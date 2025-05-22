@@ -1,0 +1,406 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 84% 4.9%;
+  --primary: 262.1 83.3% 57.8%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 210 40% 96.1%;
+  --secondary-foreground: 222.2 47.4% 11.2%;
+  --muted: 210 40% 96.1%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --accent: 210 40% 96.1%;
+  --accent-foreground: 222.2 47.4% 11.2%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: 262.1 83.3% 57.8%;
+  --radius: 0.5rem;
+
+  /* Custom theme colors */
+  --hero-gradient-from: 271 91% 65% 0.9;
+  --hero-gradient-to: 244 63% 50% 0.9;
+  --card-hover-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  --scrollbar-track: #f1f1f1;
+  --scrollbar-thumb: #8b5cf6;
+  --scrollbar-thumb-hover: #7c3aed;
+  --selection-bg: rgba(139, 92, 246, 0.3);
+  --selection-color: #1a1a1a;
+  --glass-bg: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.2);
+}
+
+.dark {
+  --background: 222.2 84% 4.9%;
+  --foreground: 210 40% 98%;
+  --card: 222.2 84% 4.9%;
+  --card-foreground: 210 40% 98%;
+  --popover: 222.2 84% 4.9%;
+  --popover-foreground: 210 40% 98%;
+  --primary: 262.1 73.3% 57.8%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 217.2 32.6% 17.5%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 217.2 32.6% 17.5%;
+  --muted-foreground: 215 20.2% 65.1%;
+  --accent: 217.2 32.6% 17.5%;
+  --accent-foreground: 210 40% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 217.2 32.6% 17.5%;
+  --input: 217.2 32.6% 17.5%;
+  --ring: 262.1 73.3% 57.8%;
+
+  /* Custom theme colors for dark mode */
+  --hero-gradient-from: 271 81% 55% 0.9;
+  --hero-gradient-to: 244 53% 40% 0.9;
+  --card-hover-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+  --scrollbar-track: #2d2d2d;
+  --scrollbar-thumb: #6d28d9;
+  --scrollbar-thumb-hover: #5b21b6;
+  --selection-bg: rgba(139, 92, 246, 0.5);
+  --selection-color: #ffffff;
+  --glass-bg: rgba(17, 17, 17, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+* {
+  @apply border-border;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-background text-foreground;
+  font-feature-settings: "rlig" 1, "calt" 1;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+
+/* Selection styling */
+::selection {
+  background-color: var(--selection-bg);
+  color: var(--selection-color);
+}
+
+/* Custom animations */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.bg-gradient-animate {
+  background-size: 200% 200%;
+  animation: gradient 15s ease infinite;
+}
+
+/* Typography enhancements */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply tracking-tight;
+}
+
+/* Custom utility classes */
+.text-balance {
+  text-wrap: balance;
+}
+
+.text-shadow {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.text-shadow-lg {
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+}
+
+.dark .text-shadow {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.dark .text-shadow-lg {
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.glass-effect {
+  @apply backdrop-blur-md;
+  background-color: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+}
+
+/* Hero section wave animation */
+.wave {
+  animation: wave 25s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
+  transform-origin: 50% 50%;
+}
+
+@keyframes wave {
+  0% {
+    transform: translateX(-50%) scaleY(1);
+  }
+  25% {
+    transform: translateX(-25%) scaleY(0.8);
+  }
+  50% {
+    transform: translateX(0%) scaleY(1.1);
+  }
+  75% {
+    transform: translateX(25%) scaleY(0.9);
+  }
+  100% {
+    transform: translateX(50%) scaleY(1);
+  }
+}
+
+/* Button hover effects */
+.btn-hover-effect {
+  @apply relative overflow-hidden;
+}
+
+.btn-hover-effect::after {
+  content: "";
+  @apply absolute inset-0 bg-white opacity-0 transition-opacity duration-300;
+}
+
+.btn-hover-effect:hover::after {
+  @apply opacity-20;
+}
+
+.dark .btn-hover-effect::after {
+  @apply bg-white;
+}
+
+/* Card hover effects */
+.card-hover {
+  @apply transition-all duration-300;
+}
+
+.card-hover:hover {
+  @apply transform -translate-y-1;
+  box-shadow: var(--card-hover-shadow);
+}
+
+/* Timeline connector animation */
+.timeline-connector {
+  @apply absolute left-0 top-0 bottom-0 w-0.5 bg-purple-200 dark:bg-purple-800;
+  transform: scaleY(0);
+  transform-origin: top;
+  animation: grow-down 1s ease forwards;
+}
+
+@keyframes grow-down {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+/* Shimmer effect for loading states */
+.shimmer {
+  @apply relative overflow-hidden;
+}
+
+.shimmer::after {
+  content: "";
+  @apply absolute top-0 left-0 w-full h-full;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: shimmer 2s infinite;
+}
+
+.dark .shimmer::after {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Gradient text */
+.gradient-text {
+  @apply text-transparent bg-clip-text;
+  background-image: linear-gradient(to right, #8b5cf6, #6366f1);
+}
+
+.dark .gradient-text {
+  background-image: linear-gradient(to right, #a78bfa, #818cf8);
+}
+
+/* Responsive font sizes */
+@media (max-width: 640px) {
+  h1 {
+    @apply text-3xl;
+  }
+  h2 {
+    @apply text-2xl;
+  }
+  h3 {
+    @apply text-xl;
+  }
+}
+
+/* Focus styles for accessibility */
+*:focus-visible {
+  @apply outline-none ring-2 ring-purple-500 ring-offset-2 dark:ring-purple-400 dark:ring-offset-gray-900;
+}
+
+/* Dark mode specific styles */
+.dark .bg-white {
+  @apply bg-gray-800;
+}
+
+.dark .bg-gray-50 {
+  @apply bg-gray-900;
+}
+
+.dark .bg-gray-100 {
+  @apply bg-gray-800;
+}
+
+.dark .text-gray-900 {
+  @apply text-gray-100;
+}
+
+.dark .text-gray-700 {
+  @apply text-gray-300;
+}
+
+.dark .text-gray-600 {
+  @apply text-gray-400;
+}
+
+.dark .border-gray-100 {
+  @apply border-gray-800;
+}
+
+.dark .border-purple-100 {
+  @apply border-purple-900;
+}
+
+.dark .shadow-sm {
+  @apply shadow-md shadow-black/20;
+}
+
+.dark .shadow-lg {
+  @apply shadow-xl shadow-black/30;
+}
+
+/* Dark mode card gradients */
+.dark .bg-gradient-to-br.from-purple-50.to-indigo-50 {
+  @apply from-purple-900/40 to-indigo-900/40 bg-gray-800;
+}
+
+.dark .bg-gradient-to-br.from-indigo-50.to-blue-50 {
+  @apply from-indigo-900/40 to-blue-900/40 bg-gray-800;
+}
+
+.dark .bg-gradient-to-br.from-emerald-50.to-green-50 {
+  @apply from-emerald-900/40 to-green-900/40 bg-gray-800;
+}
+
+/* Dark mode icon backgrounds */
+.dark .bg-purple-100 {
+  @apply bg-purple-900/50;
+}
+
+.dark .bg-indigo-100 {
+  @apply bg-indigo-900/50;
+}
+
+.dark .bg-emerald-100 {
+  @apply bg-emerald-900/50;
+}
+
+.dark .bg-yellow-100 {
+  @apply bg-yellow-900/50;
+}
+
+.dark .bg-amber-100 {
+  @apply bg-amber-900/50;
+}
+
+/* Theme transition */
+.theme-transition {
+  @apply transition-colors duration-300;
+}
