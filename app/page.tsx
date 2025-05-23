@@ -1,548 +1,235 @@
+import { MapPin, Clock, Users, Award } from "lucide-react"
 import Link from "next/link"
-import {
-  ArrowRight,
-  Calendar,
-  MapPin,
-  Clock,
-  Users,
-  Award,
-  ChevronDown,
-  Briefcase,
-  Network,
-  BarChart,
-  Gift,
-} from "lucide-react"
 import { Button } from "@/components/ui/button"
-import HeroAnimation from "@/components/hero-animation"
 import CountdownTimer from "@/components/countdown-timer"
-import FAQAccordion from "@/components/faq-accordion"
+import AnimatedFeature from "@/components/animated-feature"
+import ParticleBackground from "@/components/particle-background"
 import SponsorLogos from "@/components/sponsor-logos"
-import { Testimonials } from "@/components/testimonials"
+import TestimonialSlider from "@/components/testimonial-slider"
+import FallingMoney from "@/components/falling-money"
+import AnimatedSection from "@/components/animated-section"
+import { ArrowRightIcon, CalendarIcon } from "@radix-ui/react-icons"
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen flex-col">
+    <main className="min-h-screen bg-white">
+      <FallingMoney />
+
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-green-950 to-green-900 py-20 md:py-32">
-        <div className="absolute inset-0 z-0 opacity-20">
-          <HeroAnimation />
-        </div>
-        <div className="container relative z-10 mx-auto px-4 text-center">
-          <div className="mx-auto max-w-4xl">
-            <h1 className="animate-fade-up text-4xl font-extrabold tracking-tight text-white sm:text-5xl md:text-6xl">
-              <span className="block">EcoNerds</span>
-              <span className="mt-2 block bg-gradient-to-r from-green-300 to-green-100 bg-clip-text text-transparent">
-                Case Competition
-              </span>
-            </h1>
-            <p className="mt-6 animate-fade-up text-xl text-green-100 [animation-delay:200ms]">
-              Solve real-world economic challenges, showcase your analytical skills, and win amazing prizes
-            </p>
-            <div className="mt-8 flex animate-fade-up flex-col items-center justify-center gap-4 sm:flex-row [animation-delay:400ms]">
-              <Button asChild size="lg" className="bg-green-500 text-lg hover:bg-green-600">
-                <Link href="/register">
-                  Register Now <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
-              <Button
-                asChild
-                variant="outline"
-                size="lg"
-                className="border-green-300 text-lg text-green-100 hover:bg-green-800/20"
-              >
-                <Link href="#details">Learn More</Link>
-              </Button>
-            </div>
-            <div className="mt-12 animate-fade-up [animation-delay:600ms]">
-              <CountdownTimer targetDate="2025-06-15T09:00:00" />
+      <section className="relative overflow-hidden h-screen flex items-center">
+        <ParticleBackground />
+        <div className="container mx-auto px-4 relative z-10 flex flex-col justify-center h-full">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="animate-fade-in-up">
+              <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-green-500 to-emerald-600 bg-clip-text text-transparent">
+                EcoNerds Case Competition
+              </h1>
+              <p className="text-xl md:text-2xl text-gray-700 mb-8">
+                Solve real-world economic challenges and showcase your innovative solutions
+              </p>
+              <div className="flex flex-col sm:flex-row justify-center gap-4 mb-12">
+                <Button size="lg" className="bg-green-500 hover:bg-green-600 text-white" asChild>
+                  <Link href="/register">
+                    Register Now <ArrowRightIcon className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-green-500 text-green-600 hover:bg-green-50"
+                  asChild
+                >
+                  <Link href="/about">Learn More</Link>
+                </Button>
+              </div>
+              <div className="p-4 bg-white/80 backdrop-blur-sm rounded-xl shadow-lg inline-block">
+                <CountdownTimer targetDate="2025-06-06T08:00:00" />
+              </div>
             </div>
           </div>
         </div>
-        <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white to-transparent"></div>
+        <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-white to-transparent"></div>
       </section>
 
       {/* Event Details Section */}
-      <section id="details" className="relative overflow-hidden py-24">
-        <div className="absolute inset-0 bg-gradient-to-b from-white to-green-50 opacity-70"></div>
-        <div className="absolute -left-24 -top-24 h-64 w-64 rounded-full bg-green-200 opacity-20 blur-3xl"></div>
-        <div className="absolute -right-24 -bottom-24 h-64 w-64 rounded-full bg-green-300 opacity-20 blur-3xl"></div>
+      <section className="py-20 bg-white" id="details">
+        <div className="container mx-auto px-4">
+          <AnimatedSection animation="fade-up">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 relative">
+              <span className="bg-gradient-to-r from-green-500 to-emerald-600 bg-clip-text text-transparent">
+                Event Details
+              </span>
+              <span className="block w-24 h-1 bg-green-500 mx-auto mt-4"></span>
+            </h2>
+          </AnimatedSection>
 
-        <div className="container relative z-10 mx-auto px-4">
-          <div className="mb-16 text-center">
-            <span className="mb-2 inline-block rounded-full bg-green-100 px-4 py-1 text-sm font-medium text-green-800">
-              June 15-16, 2025
-            </span>
-            <h2 className="text-3xl font-bold tracking-tight text-green-900 sm:text-4xl md:text-5xl">Event Details</h2>
-            <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
-              Join us for this prestigious economic case competition in Aktobe
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <AnimatedFeature
+              icon={<CalendarIcon className="h-10 w-10 text-green-500" />}
+              title="Date"
+              description="June 15-16, 2024"
+              delay={0}
+            />
+            <AnimatedFeature
+              icon={<MapPin className="h-10 w-10 text-green-500" />}
+              title="Location"
+              description="Aktobe Business Center, Abulkhair Khan Avenue, Aktobe"
+              delay={1}
+            />
+            <AnimatedFeature
+              icon={<Clock className="h-10 w-10 text-green-500" />}
+              title="Time"
+              description="9:00 AM - 6:00 PM"
+              delay={2}
+            />
+            <AnimatedFeature
+              icon={<Users className="h-10 w-10 text-green-500" />}
+              title="Participants"
+              description="Teams of 3-4 students"
+              delay={3}
+            />
+          </div>
+
+          <AnimatedSection animation="fade-up" delay={200} className="mt-16">
+            <div className="bg-gradient-to-r from-green-50 to-emerald-50 p-8 rounded-2xl shadow-sm">
+              <div className="grid md:grid-cols-2 gap-8 items-center">
+                <div>
+                  <h3 className="text-2xl font-bold text-gray-800 mb-4">About the Competition</h3>
+                  <p className="text-gray-700 mb-4">
+                    EcoNerds Case Competition brings together the brightest minds to tackle pressing economic challenges
+                    with innovative, sustainable solutions.
+                  </p>
+                  <p className="text-gray-700 mb-4">
+                    Teams will have 24 hours to analyze a real-world economic case, develop comprehensive solutions, and
+                    present their findings to a panel of industry experts.
+                  </p>
+                  <ul className="space-y-2">
+                    {["Case analysis", "Strategic planning", "Financial modeling", "Presentation skills"].map(
+                      (item, i) => (
+                        <li key={i} className="flex items-center">
+                          <span className="h-2 w-2 rounded-full bg-green-500 mr-2"></span>
+                          <span>{item}</span>
+                        </li>
+                      ),
+                    )}
+                  </ul>
+                  <div className="mt-6">
+                    <Button className="bg-green-500 hover:bg-green-600 text-white" asChild>
+                      <Link href="/about">Read More About EcoNerds</Link>
+                    </Button>
+                  </div>
+                </div>
+                <div className="relative h-64 md:h-80 overflow-hidden rounded-xl shadow-lg">
+                  <img
+                    src="https://agcdn-1d97e.kxcdn.com/wp-content/uploads/2018/02/alphagamma-best-case-competitions-to-apply-for-in-2018-entrepreneurship-youth-opportunities-business.jpg"
+                    alt="EcoNerds Case Competition"
+                    className="object-cover w-full h-full"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
+                    <div className="p-4 text-white">
+                      <p className="font-medium">Prize pool: $5,000</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* Prizes Section */}
+      <section className="py-20 bg-green-50">
+        <div className="container mx-auto px-4">
+          <AnimatedSection animation="fade-up">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 relative">
+              <span className="bg-gradient-to-r from-green-500 to-emerald-600 bg-clip-text text-transparent">
+                Prizes & Recognition
+              </span>
+              <span className="block w-24 h-1 bg-green-500 mx-auto mt-4"></span>
+            </h2>
+          </AnimatedSection>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              { place: "1st Place", prize: "$2,500", icon: "🏆", color: "from-yellow-400 to-yellow-300" },
+              { place: "2nd Place", prize: "$1,500", icon: "🥈", color: "from-gray-400 to-gray-300" },
+              { place: "3rd Place", prize: "$1,000", icon: "🥉", color: "from-amber-600 to-amber-500" },
+            ].map((item, i) => (
+              <AnimatedSection key={i} animation="zoom-in" delay={i * 100}>
+                <div className="group">
+                  <div
+                    className={`bg-white rounded-2xl shadow-lg p-8 text-center transition-transform duration-300 group-hover:-translate-y-2`}
+                  >
+                    <div className={`text-5xl mb-4 bg-gradient-to-r ${item.color} bg-clip-text`}>{item.icon}</div>
+                    <h3 className="text-xl font-bold text-gray-800 mb-2">{item.place}</h3>
+                    <p className="text-3xl font-bold text-green-600 mb-4">{item.prize}</p>
+                    <p className="text-gray-600">Plus internship opportunities with our sponsor companies</p>
+                  </div>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
+
+          <AnimatedSection animation="fade-up" delay={300} className="mt-16 text-center">
+            <p className="text-lg text-gray-700 mb-6">
+              All participants will receive certificates and exclusive networking opportunities with industry
+              professionals.
             </p>
-          </div>
-
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            <div className="group relative overflow-hidden rounded-xl border border-green-100 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-              <div className="absolute -right-4 -top-4 h-24 w-24 rounded-full bg-green-50 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
-              <div className="relative z-10">
-                <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-green-100 text-green-700 transition-all duration-300 group-hover:bg-green-700 group-hover:text-white">
-                  <Calendar className="h-8 w-8" />
-                </div>
-                <h3 className="mb-3 text-2xl font-semibold text-green-900">Date</h3>
-                <p className="text-gray-600">June 15-16, 2025</p>
-                <p className="mt-2 text-sm text-gray-500">Saturday & Sunday, 9:00 AM - 6:00 PM</p>
-              </div>
-            </div>
-
-            <div className="group relative overflow-hidden rounded-xl border border-green-100 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-              <div className="absolute -right-4 -top-4 h-24 w-24 rounded-full bg-green-50 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
-              <div className="relative z-10">
-                <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-green-100 text-green-700 transition-all duration-300 group-hover:bg-green-700 group-hover:text-white">
-                  <MapPin className="h-8 w-8" />
-                </div>
-                <h3 className="mb-3 text-2xl font-semibold text-green-900">Location</h3>
-                <p className="text-gray-600">Aktobe Business Center</p>
-                <p className="mt-2 text-sm text-gray-500">45 Abulkhair Khan Avenue, Aktobe, Kazakhstan</p>
-              </div>
-            </div>
-
-            <div className="group relative overflow-hidden rounded-xl border border-green-100 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-              <div className="absolute -right-4 -top-4 h-24 w-24 rounded-full bg-green-50 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
-              <div className="relative z-10">
-                <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-green-100 text-green-700 transition-all duration-300 group-hover:bg-green-700 group-hover:text-white">
-                  <Users className="h-8 w-8" />
-                </div>
-                <h3 className="mb-3 text-2xl font-semibold text-green-900">Participants</h3>
-                <p className="text-gray-600">Teams of 3-4 students</p>
-                <p className="mt-2 text-sm text-gray-500">From universities across Kazakhstan</p>
-              </div>
-            </div>
-
-            <div className="group relative overflow-hidden rounded-xl border border-green-100 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-              <div className="absolute -right-4 -top-4 h-24 w-24 rounded-full bg-green-50 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
-              <div className="relative z-10">
-                <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-green-100 text-green-700 transition-all duration-300 group-hover:bg-green-700 group-hover:text-white">
-                  <Award className="h-8 w-8" />
-                </div>
-                <h3 className="mb-3 text-2xl font-semibold text-green-900">Prizes</h3>
-                <div className="space-y-2">
-                  <div className="flex items-center">
-                    <div className="mr-2 h-5 w-5 rounded-full bg-yellow-400"></div>
-                    <p className="text-gray-600">₸1,000,000 for 1st place</p>
-                  </div>
-                  <div className="flex items-center">
-                    <div className="mr-2 h-5 w-5 rounded-full bg-gray-300"></div>
-                    <p className="text-gray-600">₸500,000 for 2nd place</p>
-                  </div>
-                  <div className="flex items-center">
-                    <div className="mr-2 h-5 w-5 rounded-full bg-amber-600"></div>
-                    <p className="text-gray-600">₸250,000 for 3rd place</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="group relative overflow-hidden rounded-xl border border-green-100 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-              <div className="absolute -right-4 -top-4 h-24 w-24 rounded-full bg-green-50 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
-              <div className="relative z-10">
-                <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-green-100 text-green-700 transition-all duration-300 group-hover:bg-green-700 group-hover:text-white">
-                  <Clock className="h-8 w-8" />
-                </div>
-                <h3 className="mb-3 text-2xl font-semibold text-green-900">Duration</h3>
-                <p className="text-gray-600">Two full days of competition</p>
-                <p className="mt-2 text-sm text-gray-500">Case analysis, mentorship, and presentations</p>
-              </div>
-            </div>
-
-            <div className="group relative overflow-hidden rounded-xl border border-green-100 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-              <div className="absolute -right-4 -top-4 h-24 w-24 rounded-full bg-green-50 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
-              <div className="relative z-10">
-                <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-green-100 text-green-700 transition-all duration-300 group-hover:bg-green-700 group-hover:text-white">
-                  <ChevronDown className="h-8 w-8" />
-                </div>
-                <h3 className="mb-3 text-2xl font-semibold text-green-900">Registration Fee</h3>
-                <p className="text-gray-600">₸5,000 per team</p>
-                <p className="mt-2 text-sm text-gray-500">Includes meals, materials, and certificates</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-green-900 to-green-800 py-24 text-white">
-        <div className="absolute inset-0 bg-[url('/abstract-geometric-flow.png')] bg-repeat opacity-5"></div>
-        <div className="absolute -left-32 top-0 h-96 w-96 rounded-full bg-green-500 opacity-10 blur-3xl"></div>
-        <div className="absolute -right-32 bottom-0 h-96 w-96 rounded-full bg-green-400 opacity-10 blur-3xl"></div>
-
-        <div className="container relative z-10 mx-auto px-4">
-          <div className="mb-16 text-center">
-            <span className="mb-2 inline-block rounded-full bg-green-700 px-4 py-1 text-sm font-medium text-green-100">
-              Benefits
-            </span>
-            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl">Why Participate?</h2>
-            <p className="mx-auto mt-4 max-w-2xl text-lg text-green-100">
-              Gain valuable experience and expand your professional network
-            </p>
-          </div>
-
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            <div className="group relative overflow-hidden rounded-xl bg-white/5 p-8 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:bg-white/10">
-              <div className="absolute -right-16 -top-16 h-32 w-32 rounded-full bg-green-500 opacity-0 blur-3xl transition-opacity duration-300 group-hover:opacity-20"></div>
-              <div className="relative z-10">
-                <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-green-700 text-green-100 transition-all duration-300 group-hover:bg-green-500 group-hover:text-white">
-                  <Briefcase className="h-8 w-8" />
-                </div>
-                <h3 className="mb-3 text-2xl font-semibold text-white">Real-World Cases</h3>
-                <p className="text-green-100">Work on actual economic challenges provided by our industry partners</p>
-                <div className="mt-6 h-1 w-12 rounded-full bg-green-500 transition-all duration-300 group-hover:w-24"></div>
-              </div>
-            </div>
-
-            <div className="group relative overflow-hidden rounded-xl bg-white/5 p-8 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:bg-white/10">
-              <div className="absolute -right-16 -top-16 h-32 w-32 rounded-full bg-green-500 opacity-0 blur-3xl transition-opacity duration-300 group-hover:opacity-20"></div>
-              <div className="relative z-10">
-                <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-green-700 text-green-100 transition-all duration-300 group-hover:bg-green-500 group-hover:text-white">
-                  <Users className="h-8 w-8" />
-                </div>
-                <h3 className="mb-3 text-2xl font-semibold text-white">Expert Mentorship</h3>
-                <p className="text-green-100">Receive guidance from leading economists and business professionals</p>
-                <div className="mt-6 h-1 w-12 rounded-full bg-green-500 transition-all duration-300 group-hover:w-24"></div>
-              </div>
-            </div>
-
-            <div className="group relative overflow-hidden rounded-xl bg-white/5 p-8 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:bg-white/10">
-              <div className="absolute -right-16 -top-16 h-32 w-32 rounded-full bg-green-500 opacity-0 blur-3xl transition-opacity duration-300 group-hover:opacity-20"></div>
-              <div className="relative z-10">
-                <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-green-700 text-green-100 transition-all duration-300 group-hover:bg-green-500 group-hover:text-white">
-                  <Network className="h-8 w-8" />
-                </div>
-                <h3 className="mb-3 text-2xl font-semibold text-white">Networking</h3>
-                <p className="text-green-100">Connect with industry leaders and potential employers</p>
-                <div className="mt-6 h-1 w-12 rounded-full bg-green-500 transition-all duration-300 group-hover:w-24"></div>
-              </div>
-            </div>
-
-            <div className="group relative overflow-hidden rounded-xl bg-white/5 p-8 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:bg-white/10">
-              <div className="absolute -right-16 -top-16 h-32 w-32 rounded-full bg-green-500 opacity-0 blur-3xl transition-opacity duration-300 group-hover:opacity-20"></div>
-              <div className="relative z-10">
-                <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-green-700 text-green-100 transition-all duration-300 group-hover:bg-green-500 group-hover:text-white">
-                  <BarChart className="h-8 w-8" />
-                </div>
-                <h3 className="mb-3 text-2xl font-semibold text-white">Skill Development</h3>
-                <p className="text-green-100">Enhance your analytical, problem-solving, and presentation skills</p>
-                <div className="mt-6 h-1 w-12 rounded-full bg-green-500 transition-all duration-300 group-hover:w-24"></div>
-              </div>
-            </div>
-
-            <div className="group relative overflow-hidden rounded-xl bg-white/5 p-8 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:bg-white/10">
-              <div className="absolute -right-16 -top-16 h-32 w-32 rounded-full bg-green-500 opacity-0 blur-3xl transition-opacity duration-300 group-hover:opacity-20"></div>
-              <div className="relative z-10">
-                <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-green-700 text-green-100 transition-all duration-300 group-hover:bg-green-500 group-hover:text-white">
-                  <Award className="h-8 w-8" />
-                </div>
-                <h3 className="mb-3 text-2xl font-semibold text-white">Recognition</h3>
-                <p className="text-green-100">Gain recognition from prestigious companies and organizations</p>
-                <div className="mt-6 h-1 w-12 rounded-full bg-green-500 transition-all duration-300 group-hover:w-24"></div>
-              </div>
-            </div>
-
-            <div className="group relative overflow-hidden rounded-xl bg-white/5 p-8 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:bg-white/10">
-              <div className="absolute -right-16 -top-16 h-32 w-32 rounded-full bg-green-500 opacity-0 blur-3xl transition-opacity duration-300 group-hover:opacity-20"></div>
-              <div className="relative z-10">
-                <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-green-700 text-green-100 transition-all duration-300 group-hover:bg-green-500 group-hover:text-white">
-                  <Gift className="h-8 w-8" />
-                </div>
-                <h3 className="mb-3 text-2xl font-semibold text-white">Prizes</h3>
-                <p className="text-green-100">Win cash prizes, internship opportunities, and more</p>
-                <div className="mt-6 h-1 w-12 rounded-full bg-green-500 transition-all duration-300 group-hover:w-24"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Schedule Section */}
-      <section className="py-24">
-        <div className="container mx-auto px-4">
-          <div className="mb-16 text-center">
-            <span className="mb-2 inline-block rounded-full bg-green-100 px-4 py-1 text-sm font-medium text-green-800">
-              Agenda
-            </span>
-            <h2 className="text-3xl font-bold tracking-tight text-green-900 sm:text-4xl md:text-5xl">Event Schedule</h2>
-            <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
-              Two days of intense competition, learning, and networking
-            </p>
-          </div>
-
-          <div className="mx-auto max-w-5xl">
-            <div className="relative">
-              {/* Timeline line */}
-              <div className="absolute left-0 top-0 bottom-0 ml-8 hidden w-0.5 bg-green-200 md:block"></div>
-
-              {/* Day 1 */}
-              <div className="mb-12">
-                <div className="flex flex-col md:flex-row">
-                  <div className="mb-4 flex md:mb-0 md:w-48">
-                    <div className="z-10 mr-4 flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-full bg-green-600 text-white shadow-lg md:mt-1">
-                      <span className="text-lg font-bold">Day 1</span>
-                    </div>
-                    <div className="pt-3 md:hidden">
-                      <h3 className="text-xl font-bold text-green-800">June 15, 2025</h3>
-                      <p className="text-sm text-gray-600">Competition Kickoff</p>
-                    </div>
-                  </div>
-
-                  <div className="hidden pt-3 md:block md:w-48">
-                    <h3 className="text-xl font-bold text-green-800">June 15, 2025</h3>
-                    <p className="text-sm text-gray-600">Competition Kickoff</p>
-                  </div>
-
-                  <div className="ml-0 md:ml-12">
-                    <div className="space-y-6">
-                      <div className="group rounded-xl border border-green-100 bg-white p-6 shadow-sm transition-all hover:border-green-200 hover:shadow-md">
-                        <div className="flex flex-col sm:flex-row sm:items-center">
-                          <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-green-100 text-green-700 sm:mb-0">
-                            <span className="font-semibold">09:00</span>
-                          </div>
-                          <div className="sm:ml-6">
-                            <h4 className="text-lg font-semibold text-green-900">Registration & Welcome Coffee</h4>
-                            <p className="mt-1 text-gray-600">Check-in and networking</p>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="group rounded-xl border border-green-100 bg-white p-6 shadow-sm transition-all hover:border-green-200 hover:shadow-md">
-                        <div className="flex flex-col sm:flex-row sm:items-center">
-                          <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-green-100 text-green-700 sm:mb-0">
-                            <span className="font-semibold">10:00</span>
-                          </div>
-                          <div className="sm:ml-6">
-                            <h4 className="text-lg font-semibold text-green-900">Opening Ceremony</h4>
-                            <p className="mt-1 text-gray-600">Introduction to the competition and keynote speech</p>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="group rounded-xl border border-green-100 bg-white p-6 shadow-sm transition-all hover:border-green-200 hover:shadow-md">
-                        <div className="flex flex-col sm:flex-row sm:items-center">
-                          <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-green-100 text-green-700 sm:mb-0">
-                            <span className="font-semibold">11:00</span>
-                          </div>
-                          <div className="sm:ml-6">
-                            <h4 className="text-lg font-semibold text-green-900">Case Reveal</h4>
-                            <p className="mt-1 text-gray-600">Teams receive the case and begin analysis</p>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="group rounded-xl border border-green-100 bg-white p-6 shadow-sm transition-all hover:border-green-200 hover:shadow-md">
-                        <div className="flex flex-col sm:flex-row sm:items-center">
-                          <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-green-100 text-green-700 sm:mb-0">
-                            <span className="font-semibold">12:00</span>
-                          </div>
-                          <div className="sm:ml-6">
-                            <h4 className="text-lg font-semibold text-green-900">Networking Lunch</h4>
-                            <p className="mt-1 text-gray-600">Lunch with sponsors and industry professionals</p>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="group rounded-xl border border-green-100 bg-white p-6 shadow-sm transition-all hover:border-green-200 hover:shadow-md">
-                        <div className="flex flex-col sm:flex-row sm:items-center">
-                          <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-green-100 text-green-700 sm:mb-0">
-                            <span className="font-semibold">13:00</span>
-                          </div>
-                          <div className="sm:ml-6">
-                            <h4 className="text-lg font-semibold text-green-900">Case Analysis</h4>
-                            <p className="mt-1 text-gray-600">Teams work on their solutions with mentor support</p>
-                            <div className="mt-3 flex flex-wrap gap-2">
-                              <span className="rounded-full bg-green-50 px-3 py-1 text-xs font-medium text-green-700">
-                                Mentorship
-                              </span>
-                              <span className="rounded-full bg-green-50 px-3 py-1 text-xs font-medium text-green-700">
-                                Team Work
-                              </span>
-                              <span className="rounded-full bg-green-50 px-3 py-1 text-xs font-medium text-green-700">
-                                Analysis
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Day 2 */}
-              <div>
-                <div className="flex flex-col md:flex-row">
-                  <div className="mb-4 flex md:mb-0 md:w-48">
-                    <div className="z-10 mr-4 flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-full bg-green-600 text-white shadow-lg md:mt-1">
-                      <span className="text-lg font-bold">Day 2</span>
-                    </div>
-                    <div className="pt-3 md:hidden">
-                      <h3 className="text-xl font-bold text-green-800">June 16, 2025</h3>
-                      <p className="text-sm text-gray-600">Presentations & Awards</p>
-                    </div>
-                  </div>
-
-                  <div className="hidden pt-3 md:block md:w-48">
-                    <h3 className="text-xl font-bold text-green-800">June 16, 2025</h3>
-                    <p className="text-sm text-gray-600">Presentations & Awards</p>
-                  </div>
-
-                  <div className="ml-0 md:ml-12">
-                    <div className="space-y-6">
-                      <div className="group rounded-xl border border-green-100 bg-white p-6 shadow-sm transition-all hover:border-green-200 hover:shadow-md">
-                        <div className="flex flex-col sm:flex-row sm:items-center">
-                          <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-green-100 text-green-700 sm:mb-0">
-                            <span className="font-semibold">09:00</span>
-                          </div>
-                          <div className="sm:ml-6">
-                            <h4 className="text-lg font-semibold text-green-900">Preparation Time</h4>
-                            <p className="mt-1 text-gray-600">Final touches on presentations</p>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="group rounded-xl border border-green-100 bg-white p-6 shadow-sm transition-all hover:border-green-200 hover:shadow-md">
-                        <div className="flex flex-col sm:flex-row sm:items-center">
-                          <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-green-100 text-green-700 sm:mb-0">
-                            <span className="font-semibold">10:00</span>
-                          </div>
-                          <div className="sm:ml-6">
-                            <h4 className="text-lg font-semibold text-green-900">Preliminary Presentations</h4>
-                            <p className="mt-1 text-gray-600">Teams present their solutions to judges</p>
-                            <div className="mt-3 flex flex-wrap gap-2">
-                              <span className="rounded-full bg-green-50 px-3 py-1 text-xs font-medium text-green-700">
-                                Presentations
-                              </span>
-                              <span className="rounded-full bg-green-50 px-3 py-1 text-xs font-medium text-green-700">
-                                Q&A
-                              </span>
-                              <span className="rounded-full bg-green-50 px-3 py-1 text-xs font-medium text-green-700">
-                                Feedback
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="group rounded-xl border border-green-100 bg-white p-6 shadow-sm transition-all hover:border-green-200 hover:shadow-md">
-                        <div className="flex flex-col sm:flex-row sm:items-center">
-                          <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-green-100 text-green-700 sm:mb-0">
-                            <span className="font-semibold">13:00</span>
-                          </div>
-                          <div className="sm:ml-6">
-                            <h4 className="text-lg font-semibold text-green-900">Networking Lunch</h4>
-                            <p className="mt-1 text-gray-600">Lunch and networking</p>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="group rounded-xl border border-green-100 bg-white p-6 shadow-sm transition-all hover:border-green-200 hover:shadow-md">
-                        <div className="flex flex-col sm:flex-row sm:items-center">
-                          <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-green-100 text-green-700 sm:mb-0">
-                            <span className="font-semibold">14:00</span>
-                          </div>
-                          <div className="sm:ml-6">
-                            <h4 className="text-lg font-semibold text-green-900">Final Round</h4>
-                            <p className="mt-1 text-gray-600">Top teams present to all attendees</p>
-                            <div className="mt-3 flex flex-wrap gap-2">
-                              <span className="rounded-full bg-green-50 px-3 py-1 text-xs font-medium text-green-700">
-                                Final Presentations
-                              </span>
-                              <span className="rounded-full bg-green-50 px-3 py-1 text-xs font-medium text-green-700">
-                                Expert Panel
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="group rounded-xl border border-green-100 bg-white p-6 shadow-sm transition-all hover:border-green-200 hover:shadow-md">
-                        <div className="flex flex-col sm:flex-row sm:items-center">
-                          <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-green-100 text-green-700 sm:mb-0">
-                            <span className="font-semibold">17:00</span>
-                          </div>
-                          <div className="sm:ml-6">
-                            <h4 className="text-lg font-semibold text-green-900">Awards Ceremony</h4>
-                            <p className="mt-1 text-gray-600">Announcement of winners and closing remarks</p>
-                            <div className="mt-3 flex flex-wrap gap-2">
-                              <span className="rounded-full bg-green-50 px-3 py-1 text-xs font-medium text-green-700">
-                                Prizes
-                              </span>
-                              <span className="rounded-full bg-green-50 px-3 py-1 text-xs font-medium text-green-700">
-                                Certificates
-                              </span>
-                              <span className="rounded-full bg-green-50 px-3 py-1 text-xs font-medium text-green-700">
-                                Celebration
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Sponsors Section */}
-      <section className="bg-green-50 py-20">
-        <div className="container mx-auto px-4">
-          <div className="mb-16 text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-green-900 sm:text-4xl">Our Sponsors</h2>
-            <p className="mt-4 text-lg text-gray-600">Supported by leading organizations in economics and finance</p>
-          </div>
-
-          <SponsorLogos />
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="mb-16 text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-green-900 sm:text-4xl">What Past Participants Say</h2>
-            <p className="mt-4 text-lg text-gray-600">Hear from previous competitors about their experience</p>
-          </div>
-
-          <Testimonials />
-        </div>
-      </section>
-
-      {/* FAQ Section */}
-      <section id="faq" className="bg-green-50 py-20">
-        <div className="container mx-auto px-4">
-          <div className="mb-16 text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-green-900 sm:text-4xl">Frequently Asked Questions</h2>
-            <p className="mt-4 text-lg text-gray-600">Find answers to common questions about the competition</p>
-          </div>
-
-          <div className="mx-auto max-w-3xl">
-            <FAQAccordion />
-          </div>
+            <Button className="bg-green-500 hover:bg-green-600 text-white" asChild>
+              <Link href="/prizes">
+                View Full Prize Details <Award className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          </AnimatedSection>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="bg-gradient-to-r from-green-800 to-green-900 py-20 text-white">
+      <section className="py-20 bg-gradient-to-r from-green-500 to-emerald-600 text-white">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Ready to showcase your economic expertise?</h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-green-100">
-            Join the EcoNerds Case Competition and take your first step toward a successful career in economics and
-            finance.
-          </p>
-          <div className="mt-8">
-            <Button asChild size="lg" className="bg-white text-lg text-green-900 hover:bg-green-100">
-              <Link href="/register">Register Your Team Now</Link>
-            </Button>
-          </div>
+          <AnimatedSection animation="fade-up">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Showcase Your Economic Expertise?</h2>
+            <p className="text-xl mb-8 max-w-2xl mx-auto">
+              Join the EcoNerds Case Competition and put your skills to the test. Registration closes on May 31, 2024.
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
+              <Button size="lg" className="bg-white text-green-600 hover:bg-gray-100" asChild>
+                <Link href="/register">Register Your Team</Link>
+              </Button>
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-green-600" asChild>
+                <Link href="/contact">Contact Us</Link>
+              </Button>
+            </div>
+          </AnimatedSection>
         </div>
       </section>
-    </div>
+
+      {/* Sponsors Section */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <AnimatedSection animation="fade-up">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 relative">
+              <span className="bg-gradient-to-r from-green-500 to-emerald-600 bg-clip-text text-transparent">
+                Our Sponsors
+              </span>
+              <span className="block w-24 h-1 bg-green-500 mx-auto mt-4"></span>
+            </h2>
+          </AnimatedSection>
+
+          <AnimatedSection animation="fade-in" delay={200}>
+            <SponsorLogos />
+          </AnimatedSection>
+
+          <AnimatedSection animation="fade-up" delay={300} className="mt-16 text-center">
+            <p className="text-gray-700 mb-6">
+              Interested in becoming a sponsor? Reach out to us for partnership opportunities.
+            </p>
+            <Button variant="outline" className="border-green-500 text-green-600 hover:bg-green-50" asChild>
+              <Link href="/sponsors">Become a Sponsor</Link>
+            </Button>
+          </AnimatedSection>
+        </div>
+      </section>
+    </main>
   )
 }

@@ -17,51 +17,40 @@ export default function CountdownTimer({ targetDate }: CountdownTimerProps) {
   useEffect(() => {
     const target = new Date(targetDate).getTime()
 
-    const calculateTimeLeft = () => {
+    const interval = setInterval(() => {
       const now = new Date().getTime()
       const difference = target - now
 
       if (difference <= 0) {
-        return {
-          days: 0,
-          hours: 0,
-          minutes: 0,
-          seconds: 0,
-        }
+        clearInterval(interval)
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 })
+        return
       }
 
-      return {
-        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-        minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
-        seconds: Math.floor((difference % (1000 * 60)) / 1000),
-      }
-    }
+      const days = Math.floor(difference / (1000 * 60 * 60 * 24))
+      const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60))
+      const seconds = Math.floor((difference % (1000 * 60)) / 1000)
 
-    setTimeLeft(calculateTimeLeft())
-
-    const timer = setInterval(() => {
-      setTimeLeft(calculateTimeLeft())
+      setTimeLeft({ days, hours, minutes, seconds })
     }, 1000)
 
-    return () => clearInterval(timer)
+    return () => clearInterval(interval)
   }, [targetDate])
 
-  const timeUnits = [
-    { label: "Days", value: timeLeft.days },
-    { label: "Hours", value: timeLeft.hours },
-    { label: "Minutes", value: timeLeft.minutes },
-    { label: "Seconds", value: timeLeft.seconds },
-  ]
-
   return (
-    <div className="flex flex-wrap justify-center gap-4">
-      {timeUnits.map((unit) => (
-        <div key={unit.label} className="flex flex-col items-center">
-          <div className="flex h-20 w-20 items-center justify-center rounded-lg bg-white/10 backdrop-blur-sm">
-            <span className="text-3xl font-bold text-white">{unit.value.toString().padStart(2, "0")}</span>
+    <div className="flex space-x-4">
+      {[
+        { label: "Days", value: timeLeft.days },
+        { label: "Hours", value: timeLeft.hours },
+        { label: "Minutes", value: timeLeft.minutes },
+        { label: "Seconds", value: timeLeft.seconds },
+      ].map((item) => (
+        <div key={item.label} className="flex flex-col items-center">
+          <div className="text-3xl font-bold text-green-600 w-16 text-center">
+            {item.value.toString().padStart(2, "0")}
           </div>
-          <span className="mt-2 text-sm font-medium text-green-100">{unit.label}</span>
+          <div className="text-xs text-gray-600 mt-1">{item.label}</div>
         </div>
       ))}
     </div>

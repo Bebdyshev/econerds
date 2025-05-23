@@ -1,424 +1,132 @@
-"use client"
-
-import { useState } from "react"
-import { useRouter } from "next/navigation"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
-import { Button } from "@/components/ui/button"
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { Checkbox } from "@/components/ui/checkbox"
-import { toast } from "@/components/ui/use-toast"
-import { Toaster } from "@/components/ui/toaster"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { ArrowLeft, Loader2 } from "lucide-react"
 import Link from "next/link"
-
-const formSchema = z.object({
-  teamName: z.string().min(3, {
-    message: "Team name must be at least 3 characters.",
-  }),
-  university: z.string().min(3, {
-    message: "University name is required.",
-  }),
-  teamSize: z.enum(["3", "4"], {
-    message: "Please select a valid team size.",
-  }),
-  contactEmail: z.string().email({
-    message: "Please enter a valid email address.",
-  }),
-  contactPhone: z.string().min(10, {
-    message: "Please enter a valid phone number.",
-  }),
-  member1Name: z.string().min(2, {
-    message: "Name is required.",
-  }),
-  member1Email: z.string().email({
-    message: "Please enter a valid email address.",
-  }),
-  member2Name: z.string().min(2, {
-    message: "Name is required.",
-  }),
-  member2Email: z.string().email({
-    message: "Please enter a valid email address.",
-  }),
-  member3Name: z.string().min(2, {
-    message: "Name is required.",
-  }),
-  member3Email: z.string().email({
-    message: "Please enter a valid email address.",
-  }),
-  member4Name: z.string().optional(),
-  member4Email: z
-    .string()
-    .email({
-      message: "Please enter a valid email address.",
-    })
-    .optional(),
-  motivation: z
-    .string()
-    .min(50, {
-      message: "Please write at least 50 characters.",
-    })
-    .max(500, {
-      message: "Please keep your response under 500 characters.",
-    }),
-  dietaryRestrictions: z.string().optional(),
-  termsAccepted: z.literal(true, {
-    errorMap: () => ({ message: "You must accept the terms and conditions." }),
-  }),
-})
+import { Button } from "@/components/ui/button"
+import RegistrationForm from "@/components/registration-form"
+import RegistrationSteps from "@/components/registration-steps"
+import AnimatedSection from "@/components/animated-section"
+import FallingMoney from "@/components/falling-money"
+import { ArrowLeftIcon } from "@radix-ui/react-icons"
 
 export default function RegisterPage() {
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const router = useRouter()
-
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      teamSize: "3",
-      termsAccepted: false,
-    },
-  })
-
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    setIsSubmitting(true)
-
-    // Simulate API call
-    setTimeout(() => {
-      console.log(values)
-      setIsSubmitting(false)
-      toast({
-        title: "Registration Successful!",
-        description:
-          "Your team has been registered for the EcoNerds Case Competition. Check your email for confirmation.",
-      })
-
-      // Redirect to success page after a short delay
-      setTimeout(() => {
-        router.push("/register/success")
-      }, 2000)
-    }, 2000)
-  }
-
   return (
-    <div className="container mx-auto px-4 py-12">
-      <Link href="/" className="mb-8 inline-flex items-center text-green-700 hover:text-green-800">
-        <ArrowLeft className="mr-2 h-4 w-4" />
-        Back to Home
-      </Link>
+    <main className="min-h-screen bg-white pt-24">
+      <FallingMoney />
 
-      <Card className="mx-auto max-w-3xl">
-        <CardHeader className="text-center">
-          <CardTitle className="text-3xl font-bold text-green-900">Register Your Team</CardTitle>
-          <CardDescription>Complete the form below to register for the EcoNerds Case Competition</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-              <div className="space-y-4">
-                <h3 className="text-xl font-semibold text-green-800">Team Information</h3>
+      {/* Header */}
+      <section className="bg-gradient-to-r from-green-500 to-emerald-600 py-16 text-white">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center mb-6">
+            <Button variant="ghost" size="sm" className="text-white hover:bg-white/20" asChild>
+              <Link href="/">
+                <ArrowLeftIcon className="h-4 w-4 mr-2" />
+                Back to Home
+              </Link>
+            </Button>
+          </div>
+          <AnimatedSection animation="fade-up">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">Register Your Team</h1>
+            <p className="text-xl max-w-3xl">
+              Complete the registration form below to secure your team's spot in the EcoNerds Case Competition.
+            </p>
+          </AnimatedSection>
+        </div>
+      </section>
 
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <FormField
-                    control={form.control}
-                    name="teamName"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Team Name</FormLabel>
-                        <FormControl>
-                          <Input placeholder="Enter your team name" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+      {/* Registration Steps */}
+      <section className="py-12 bg-white">
+        <div className="container mx-auto px-4">
+          <AnimatedSection animation="fade-up">
+            <RegistrationSteps />
+          </AnimatedSection>
+        </div>
+      </section>
 
-                  <FormField
-                    control={form.control}
-                    name="university"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>University</FormLabel>
-                        <FormControl>
-                          <Input placeholder="Enter your university" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
+      {/* Registration Form */}
+      <section className="py-12 bg-green-50">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <AnimatedSection animation="fade-up">
+              <h2 className="text-3xl font-bold text-center mb-12 bg-gradient-to-r from-green-500 to-emerald-600 bg-clip-text text-transparent">
+                Team Registration Form
+              </h2>
+            </AnimatedSection>
+            <AnimatedSection animation="fade-in" delay={200}>
+              <RegistrationForm />
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
 
-                <FormField
-                  control={form.control}
-                  name="teamSize"
-                  render={({ field }) => (
-                    <FormItem className="space-y-3">
-                      <FormLabel>Team Size</FormLabel>
-                      <FormControl>
-                        <RadioGroup
-                          onValueChange={field.onChange}
-                          defaultValue={field.value}
-                          className="flex flex-row space-x-4"
-                        >
-                          <FormItem className="flex items-center space-x-2 space-y-0">
-                            <FormControl>
-                              <RadioGroupItem value="3" />
-                            </FormControl>
-                            <FormLabel className="font-normal">3 Members</FormLabel>
-                          </FormItem>
-                          <FormItem className="flex items-center space-x-2 space-y-0">
-                            <FormControl>
-                              <RadioGroupItem value="4" />
-                            </FormControl>
-                            <FormLabel className="font-normal">4 Members</FormLabel>
-                          </FormItem>
-                        </RadioGroup>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <FormField
-                    control={form.control}
-                    name="contactEmail"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Contact Email</FormLabel>
-                        <FormControl>
-                          <Input type="email" placeholder="team@university.edu" {...field} />
-                        </FormControl>
-                        <FormDescription>Primary email for team communications</FormDescription>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-
-                  <FormField
-                    control={form.control}
-                    name="contactPhone"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Contact Phone</FormLabel>
-                        <FormControl>
-                          <Input placeholder="+7 (XXX) XXX-XXXX" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-4">
-                <h3 className="text-xl font-semibold text-green-800">Team Members</h3>
-
-                <div className="space-y-4">
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    <FormField
-                      control={form.control}
-                      name="member1Name"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Member 1 Name (Team Leader)</FormLabel>
-                          <FormControl>
-                            <Input placeholder="Full name" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    <FormField
-                      control={form.control}
-                      name="member1Email"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Member 1 Email</FormLabel>
-                          <FormControl>
-                            <Input type="email" placeholder="Email address" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
+      {/* Registration Info */}
+      <section className="py-12 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <AnimatedSection animation="fade-up">
+              <h2 className="text-3xl font-bold text-center mb-8 bg-gradient-to-r from-green-500 to-emerald-600 bg-clip-text text-transparent">
+                Important Information
+              </h2>
+            </AnimatedSection>
+            <AnimatedSection animation="fade-in" delay={200}>
+              <div className="bg-white rounded-2xl shadow-lg p-8">
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div>
+                    <h3 className="text-xl font-bold mb-4 text-gray-800">Registration Requirements</h3>
+                    <ul className="space-y-3">
+                      {[
+                        "Teams must consist of 3-4 members",
+                        "All team members must be currently enrolled students",
+                        "At least one team member should have a background in economics or finance",
+                        "Teams can represent universities, colleges, or form independently",
+                        "Registration deadline: May 31, 2024",
+                      ].map((item, i) => (
+                        <li key={i} className="flex items-start">
+                          <span className="h-5 w-5 rounded-full bg-green-100 flex items-center justify-center text-green-600 mr-2 flex-shrink-0">
+                            ✓
+                          </span>
+                          <span className="text-gray-700">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    <FormField
-                      control={form.control}
-                      name="member2Name"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Member 2 Name</FormLabel>
-                          <FormControl>
-                            <Input placeholder="Full name" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    <FormField
-                      control={form.control}
-                      name="member2Email"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Member 2 Email</FormLabel>
-                          <FormControl>
-                            <Input type="email" placeholder="Email address" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
+                  <div>
+                    <h3 className="text-xl font-bold mb-4 text-gray-800">What to Expect After Registration</h3>
+                    <ul className="space-y-3">
+                      {[
+                        "Confirmation email within 24 hours",
+                        "Team registration number and access to preparation materials",
+                        "Pre-competition briefing details (1 week before the event)",
+                        "Information about accommodation options for out-of-town participants",
+                        "Competition schedule and venue details",
+                      ].map((item, i) => (
+                        <li key={i} className="flex items-start">
+                          <span className="h-5 w-5 rounded-full bg-green-100 flex items-center justify-center text-green-600 mr-2 flex-shrink-0">
+                            ✓
+                          </span>
+                          <span className="text-gray-700">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    <FormField
-                      control={form.control}
-                      name="member3Name"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Member 3 Name</FormLabel>
-                          <FormControl>
-                            <Input placeholder="Full name" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    <FormField
-                      control={form.control}
-                      name="member3Email"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Member 3 Email</FormLabel>
-                          <FormControl>
-                            <Input type="email" placeholder="Email address" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  </div>
-
-                  {form.watch("teamSize") === "4" && (
-                    <div className="grid gap-4 sm:grid-cols-2">
-                      <FormField
-                        control={form.control}
-                        name="member4Name"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Member 4 Name</FormLabel>
-                            <FormControl>
-                              <Input placeholder="Full name" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-
-                      <FormField
-                        control={form.control}
-                        name="member4Email"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Member 4 Email</FormLabel>
-                            <FormControl>
-                              <Input type="email" placeholder="Email address" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </div>
-                  )}
                 </div>
+                <AnimatedSection animation="fade-up" delay={300} className="mt-8 pt-6 border-t border-gray-100">
+                  <h3 className="text-xl font-bold mb-4 text-gray-800">Need Help?</h3>
+                  <p className="text-gray-700 mb-4">
+                    If you have any questions about the registration process or the competition, please don't hesitate
+                    to contact us.
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <Button variant="outline" className="border-green-500 text-green-600 hover:bg-green-50" asChild>
+                      <Link href="/faq">View FAQ</Link>
+                    </Button>
+                    <Button variant="outline" className="border-green-500 text-green-600 hover:bg-green-50" asChild>
+                      <Link href="/contact">Contact Support</Link>
+                    </Button>
+                  </div>
+                </AnimatedSection>
               </div>
-
-              <div className="space-y-4">
-                <h3 className="text-xl font-semibold text-green-800">Additional Information</h3>
-
-                <FormField
-                  control={form.control}
-                  name="motivation"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Motivation</FormLabel>
-                      <FormControl>
-                        <Textarea
-                          placeholder="Why does your team want to participate in the EcoNerds Case Competition? (50-500 characters)"
-                          className="min-h-[100px]"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormDescription>{field.value?.length || 0}/500 characters</FormDescription>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="dietaryRestrictions"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Dietary Restrictions</FormLabel>
-                      <FormControl>
-                        <Textarea
-                          placeholder="Please list any dietary restrictions or allergies for your team members (optional)"
-                          className="min-h-[80px]"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="termsAccepted"
-                  render={({ field }) => (
-                    <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
-                      <FormControl>
-                        <Checkbox checked={field.value} onCheckedChange={field.onChange} />
-                      </FormControl>
-                      <div className="space-y-1 leading-none">
-                        <FormLabel>I agree to the terms and conditions of the EcoNerds Case Competition</FormLabel>
-                        <FormDescription>
-                          By checking this box, you confirm that all team members are currently enrolled students and
-                          agree to abide by the competition rules.
-                        </FormDescription>
-                      </div>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-
-              <Button type="submit" className="w-full bg-green-600 hover:bg-green-700" disabled={isSubmitting}>
-                {isSubmitting ? (
-                  <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Submitting...
-                  </>
-                ) : (
-                  "Register Team"
-                )}
-              </Button>
-            </form>
-          </Form>
-        </CardContent>
-      </Card>
-      <Toaster />
-    </div>
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
+    </main>
   )
 }

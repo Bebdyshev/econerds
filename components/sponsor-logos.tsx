@@ -1,42 +1,55 @@
+"use client"
+
+import { useInView } from "react-intersection-observer"
+import { cn } from "@/lib/utils"
+
 export default function SponsorLogos() {
+  const { ref, inView } = useInView({
+    threshold: 0.1,
+    triggerOnce: true,
+  })
+
   const sponsors = [
-    { name: "National Bank of Kazakhstan", level: "Platinum" },
-    { name: "Kazakh Economic University", level: "Gold" },
-    { name: "Samruk-Kazyna", level: "Gold" },
-    { name: "KazMunayGas", level: "Silver" },
-    { name: "Air Astana", level: "Silver" },
-    { name: "Kaspi Bank", level: "Silver" },
-    { name: "Halyk Bank", level: "Bronze" },
-    { name: "Aktobe Regional Government", level: "Bronze" },
+    {
+      name: "Kazakh National Bank",
+      logo: "/placeholder.svg?height=80&width=200&query=bank logo",
+      delay: 0,
+    },
+    {
+      name: "Aktobe Economic Forum",
+      logo: "/placeholder.svg?height=80&width=200&query=forum logo",
+      delay: 1,
+    },
+    {
+      name: "Kazakhstan Investment Corp",
+      logo: "/placeholder.svg?height=80&width=200&query=investment logo",
+      delay: 2,
+    },
+    {
+      name: "Eurasian Development Bank",
+      logo: "/placeholder.svg?height=80&width=200&query=bank logo",
+      delay: 3,
+    },
   ]
 
   return (
-    <div className="space-y-8">
-      {["Platinum", "Gold", "Silver", "Bronze"].map((level) => {
-        const levelSponsors = sponsors.filter((sponsor) => sponsor.level === level)
-        if (levelSponsors.length === 0) return null
-
-        return (
-          <div key={level} className="space-y-4">
-            <h3 className="text-center text-lg font-semibold text-green-800">{level} Sponsors</h3>
-            <div
-              className={`grid gap-6 ${level === "Platinum" ? "md:grid-cols-1" : level === "Gold" ? "md:grid-cols-2" : "md:grid-cols-3 lg:grid-cols-4"}`}
-            >
-              {levelSponsors.map((sponsor) => (
-                <div
-                  key={sponsor.name}
-                  className="flex h-24 items-center justify-center rounded-lg border border-green-100 bg-white p-4 shadow-sm transition-all hover:shadow-md"
-                >
-                  <div className="flex h-16 w-full items-center justify-center">
-                    <div className="h-12 w-12 rounded-full bg-green-100" />
-                    <span className="ml-3 font-medium text-gray-700">{sponsor.name}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )
-      })}
+    <div ref={ref} className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center">
+      {sponsors.map((sponsor, i) => (
+        <div
+          key={i}
+          className={cn(
+            "h-16 w-full flex items-center justify-center transition-all duration-700 transform",
+            inView ? "opacity-70 translate-y-0" : "opacity-0 translate-y-10",
+          )}
+          style={{ transitionDelay: `${sponsor.delay * 100}ms` }}
+        >
+          <img
+            src={sponsor.logo || "/placeholder.svg?height=80&width=200&query=logo"}
+            alt={sponsor.name}
+            className="max-h-full max-w-full object-contain"
+          />
+        </div>
+      ))}
     </div>
   )
 }

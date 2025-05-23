@@ -3,16 +3,15 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { Menu } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { useMobile } from "@/hooks/use-mobile"
+import { Cross2Icon } from "@radix-ui/react-icons"
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const pathname = usePathname()
-  const isMobile = useMobile()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,89 +24,85 @@ export default function Header() {
 
   const navItems = [
     { name: "Home", href: "/" },
-    { name: "About", href: "/#details" },
-    { name: "Schedule", href: "/#schedule" },
-    { name: "FAQ", href: "/#faq" },
+    { name: "About", href: "/about" },
     { name: "Register", href: "/register" },
+    { name: "FAQ", href: "/faq" },
+    { name: "Contact", href: "/contact" },
   ]
+
+  const isActive = (path: string) => {
+    if (path === "/" && pathname === "/") return true
+    if (path !== "/" && pathname.startsWith(path)) return true
+    return false
+  }
 
   return (
     <header
       className={cn(
-        "fixed left-0 right-0 top-0 z-50 transition-all duration-300",
-        isScrolled ? "bg-white/95 shadow-md backdrop-blur-sm" : "bg-transparent",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+        isScrolled ? "bg-white/90 backdrop-blur-md shadow-sm py-3" : "bg-transparent py-5",
       )}
     >
-      <div className="container mx-auto flex h-16 items-center justify-between px-4">
-        <Link href="/" className="flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-green-600 text-white">
-            <span className="text-sm font-bold">E</span>
-          </div>
-          <span className={cn("text-xl font-bold transition-colors", isScrolled ? "text-green-900" : "text-white")}>
-            EcoNerds
-          </span>
-        </Link>
+      <div className="container mx-auto px-4">
+        <div className="flex items-center justify-between">
+          <Link href="/" className="flex items-center">
+            <span className="text-2xl font-bold bg-gradient-to-r from-green-500 to-emerald-600 bg-clip-text text-transparent">
+              EcoNerds
+            </span>
+          </Link>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:block">
-          <ul className="flex items-center gap-6">
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
-              <li key={item.name}>
-                {item.name === "Register" ? (
-                  <Button asChild size="sm" className="bg-green-600 hover:bg-green-700">
-                    <Link href={item.href}>Register</Link>
-                  </Button>
-                ) : (
-                  <Link
-                    href={item.href}
-                    className={cn(
-                      "text-sm font-medium transition-colors hover:text-green-600",
-                      isScrolled ? "text-gray-700" : "text-white",
-                      pathname === item.href && "text-green-600",
-                    )}
-                  >
-                    {item.name}
-                  </Link>
+              <Link
+                key={item.name}
+                href={item.href}
+                className={cn(
+                  "transition-colors font-medium",
+                  isActive(item.href)
+                    ? "text-green-600"
+                    : isScrolled
+                      ? "text-gray-800 hover:text-green-600"
+                      : "text-gray-800 hover:text-green-600",
                 )}
-              </li>
+              >
+                {item.name}
+              </Link>
             ))}
-          </ul>
-        </nav>
+            <Button className="bg-green-500 hover:bg-green-600 text-white" asChild>
+              <Link href="/register">Register Now</Link>
+            </Button>
+          </nav>
 
-        {/* Mobile Menu Button */}
-        <button
-          className="block md:hidden"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-        >
-          {isMenuOpen ? (
-            <X className={isScrolled ? "text-gray-900" : "text-white"} />
-          ) : (
-            <Menu className={isScrolled ? "text-gray-900" : "text-white"} />
-          )}
-        </button>
+          {/* Mobile Menu Button */}
+          <button className="md:hidden text-gray-800" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+            {mobileMenuOpen ? <Cross2Icon size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Navigation */}
-      {isMenuOpen && isMobile && (
-        <div className="absolute left-0 right-0 bg-white px-4 py-4 shadow-lg">
-          <nav>
-            <ul className="flex flex-col gap-4">
-              {navItems.map((item) => (
-                <li key={item.name}>
-                  <Link
-                    href={item.href}
-                    className={cn(
-                      "block py-2 text-gray-700 hover:text-green-600",
-                      pathname === item.href && "font-medium text-green-600",
-                    )}
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+      {mobileMenuOpen && (
+        <div className="md:hidden bg-white shadow-lg absolute top-full left-0 right-0 py-4 px-4">
+          <nav className="flex flex-col space-y-4">
+            {navItems.map((item) => (
+              <Link
+                key={item.name}
+                href={item.href}
+                className={cn(
+                  "py-2 transition-colors font-medium",
+                  isActive(item.href) ? "text-green-600" : "text-gray-800 hover:text-green-600",
+                )}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {item.name}
+              </Link>
+            ))}
+            <Button className="bg-green-500 hover:bg-green-600 text-white w-full" asChild>
+              <Link href="/register" onClick={() => setMobileMenuOpen(false)}>
+                Register Now
+              </Link>
+            </Button>
           </nav>
         </div>
       )}
