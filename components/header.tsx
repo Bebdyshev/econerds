@@ -76,7 +76,7 @@ export default function Header() {
 
           {/* Mobile Menu Button */}
           <button className="md:hidden text-gray-800" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-            {mobileMenuOpen ? <Cross2Icon size={24} /> : <Menu size={24} />}
+            {mobileMenuOpen ? <Cross2Icon width={24} height={24} /> : <Menu width={24} height={24} />}
           </button>
         </div>
       </div>

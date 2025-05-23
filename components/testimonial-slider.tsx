@@ -111,18 +111,18 @@ export default function TestimonialSlider() {
       </div>
 
       <button
-        className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 shadow-md text-gray-700 hover:text-green-600 transition-colors"
         onClick={goToPrev}
+        className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-md text-gray-600 hover:text-green-500 z-10"
         aria-label="Previous testimonial"
       >
-        <ChevronLeftIcon size={24} />
+        <ChevronLeftIcon width={24} height={24} />
       </button>
       <button
-        className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 shadow-md text-gray-700 hover:text-green-600 transition-colors"
         onClick={goToNext}
+        className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-md text-gray-600 hover:text-green-500 z-10"
         aria-label="Next testimonial"
       >
-        <ChevronRightIcon size={24} />
+        <ChevronRightIcon width={24} height={24} />
       </button>
     </div>
   )

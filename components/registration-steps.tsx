@@ -3,9 +3,12 @@
 import { useInView } from "react-intersection-observer"
 import { cn } from "@/lib/utils"
 import { ClipboardList, Users, CalendarCheck, Award } from "lucide-react"
-import { useRef } from "react"
+import { useRef, useState } from "react"
 
 export default function RegistrationSteps() {
+  const [activeStep] = useState(0)
+  const [completedSteps] = useState<number[]>([])
+
   const steps = [
     {
       icon: <ClipboardList className="h-8 w-8 text-green-600" />,
@@ -29,15 +32,19 @@ export default function RegistrationSteps() {
     },
   ]
 
-  const stepRefs = steps.map(() => useRef(null))
+  // Create refs as array 
+  const stepRefs = useRef<Array<HTMLDivElement | null>>(Array(steps.length).fill(null))
+
+  // Use individual useInView hooks for each step
   const inViewStates = steps.map((_, index) => {
-    const { inView } = useInView({
-      ref: stepRefs[index],
+    const { ref, inView } = useInView({
       threshold: 0.3,
       triggerOnce: true,
       delay: 100,
     })
-    return inView
+
+    // Pass the ref callback to the component render function
+    return { ref, inView }
   })
 
   return (
@@ -52,11 +59,17 @@ export default function RegistrationSteps() {
 
         <div className="space-y-12">
           {steps.map((step, index) => {
-            const inView = inViewStates[index]
+            const { ref, inView } = inViewStates[index]
 
             return (
-              <div key={index} ref={stepRefs[index]} className="relative">
-                <div
+              <div 
+                key={index} 
+                className={`relative mb-8 ${
+                  index === activeStep ? "text-green-600" : completedSteps.includes(index) ? "text-gray-500" : "text-gray-400"
+                }`}
+              >
+                <div 
+                  ref={ref}
                   className={cn(
                     "flex flex-col md:flex-row md:items-center transition-all duration-700 transform",
                     inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10",

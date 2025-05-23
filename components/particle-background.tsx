@@ -4,6 +4,11 @@ import { useEffect, useRef } from "react"
 
 export default function ParticleBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  // Store dimensions separately to avoid null checks
+  const dimensionsRef = useRef<{ width: number; height: number }>({ 
+    width: typeof window !== 'undefined' ? window.innerWidth : 800, 
+    height: typeof window !== 'undefined' ? window.innerHeight : 600 
+  })
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -16,8 +21,14 @@ export default function ParticleBackground() {
 
     // Set canvas dimensions
     const setCanvasDimensions = () => {
+      if (!canvas) return
       canvas.width = window.innerWidth
       canvas.height = window.innerHeight
+      // Update our reference
+      dimensionsRef.current = {
+        width: window.innerWidth,
+        height: window.innerHeight
+      }
     }
 
     setCanvasDimensions()
@@ -33,8 +44,9 @@ export default function ParticleBackground() {
       color: string
 
       constructor() {
-        this.x = Math.random() * canvas.width
-        this.y = Math.random() * canvas.height
+        const { width, height } = dimensionsRef.current
+        this.x = Math.random() * width
+        this.y = Math.random() * height
         this.size = Math.random() * 3 + 1
         this.speedX = Math.random() * 0.5 - 0.25
         this.speedY = Math.random() * 0.5 - 0.25
@@ -44,12 +56,13 @@ export default function ParticleBackground() {
       update() {
         this.x += this.speedX
         this.y += this.speedY
+        const { width, height } = dimensionsRef.current
 
-        if (this.x < 0 || this.x > canvas.width) {
+        if (this.x < 0 || this.x > width) {
           this.speedX = -this.speedX
         }
 
-        if (this.y < 0 || this.y > canvas.height) {
+        if (this.y < 0 || this.y > height) {
           this.speedY = -this.speedY
         }
       }
@@ -73,7 +86,7 @@ export default function ParticleBackground() {
 
     // Animation loop
     const animate = () => {
-      if (!ctx) return
+      if (!ctx || !canvas) return
 
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
