@@ -1,143 +1,115 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { Quote } from "lucide-react"
-import Image from "next/image"
-import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons"
+import { useState } from "react"
+import { ChevronLeft, ChevronRight, Quote } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
 
 const testimonials = [
   {
-    id: 1,
     quote:
-      "Participating in EcoNerds was a game-changer for my career. The connections I made and the skills I developed have been invaluable in my professional journey.",
-    name: "Aizhan Nurpeisova",
-    role: "Former Participant, Now Economic Analyst",
-    avatar: "/professional-woman-headshot.png",
+      "Participating in the EcoNerds Case Competition was a transformative experience. The real-world cases challenged our analytical skills and the mentorship we received was invaluable.",
+    author: "Aizhan Nurmagambetova",
+    position: "Finance Student, Nazarbayev University",
+    team: "2024 First Place Winner",
   },
   {
-    id: 2,
     quote:
-      "The competition challenges you to think critically and apply economic theories to real-world problems. It's the perfect bridge between academic knowledge and practical application.",
-    name: "Daulet Akhmetov",
-    role: "2023 Winner, Nazarbayev University",
-    avatar: "/professional-man-headshot.png",
+      "The competition pushed us to think outside the box and apply our theoretical knowledge to practical problems. The networking opportunities with industry professionals opened doors for my career.",
+    author: "Daulet Karimov",
+    position: "Economics Student, KIMEP University",
+    team: "2024 Second Place Winner",
   },
   {
-    id: 3,
     quote:
-      "As a sponsor, we've been consistently impressed by the caliber of talent at EcoNerds. It's become our primary recruitment channel for finding promising young economists.",
-    name: "Gulnara Ismailova",
-    role: "HR Director, Kazakhstan National Bank",
-    avatar: "/testimonial-person-3.png",
+      "EcoNerds was more than just a competition—it was a learning journey. The feedback from judges helped me understand the real-world implications of economic theories and improved my presentation skills.",
+    author: "Madina Tulegenova",
+    position: "Business Administration Student, Eurasian National University",
+    team: "2024 Finalist",
+  },
+  {
+    quote:
+      "The competition provided a platform to showcase our economic knowledge and creativity. The judges' insights were eye-opening and helped us refine our approach to problem-solving.",
+    author: "Arman Suleimenov",
+    position: "International Relations Student, Al-Farabi Kazakh National University",
+    team: "2024 Participant",
   },
 ]
 
 export function Testimonials() {
-  const [current, setCurrent] = useState(0)
-  const [autoplay, setAutoplay] = useState(true)
+  const [activeIndex, setActiveIndex] = useState(0)
 
-  const next = () => {
-    setCurrent((current + 1) % testimonials.length)
+  const nextTestimonial = () => {
+    setActiveIndex((prev) => (prev + 1) % testimonials.length)
   }
 
-  const prev = () => {
-    setCurrent((current - 1 + testimonials.length) % testimonials.length)
+  const prevTestimonial = () => {
+    setActiveIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length)
   }
-
-  useEffect(() => {
-    if (!autoplay) return
-
-    const interval = setInterval(next, 5000)
-    return () => clearInterval(interval)
-  }, [current, autoplay])
 
   return (
-    <div className="relative overflow-hidden py-10">
-      <div className="absolute top-0 left-0 w-32 h-32 bg-purple-100 dark:bg-purple-900/30 rounded-full opacity-30 -translate-x-16 -translate-y-16 theme-transition" />
-      <div className="absolute bottom-0 right-0 w-32 h-32 bg-indigo-100 dark:bg-indigo-900/30 rounded-full opacity-30 translate-x-16 translate-y-16 theme-transition" />
+    <div className="relative mx-auto max-w-4xl overflow-hidden rounded-xl bg-green-50 p-6 shadow-sm md:p-10">
+      <div className="absolute left-6 top-6 text-green-200 md:left-10 md:top-10">
+        <Quote className="h-16 w-16 rotate-180 opacity-50" />
+      </div>
 
-      <div className="relative z-10 max-w-4xl mx-auto px-4">
-        <div className="text-center mb-12">
-          <Quote className="h-12 w-12 text-purple-200 dark:text-purple-800 mx-auto mb-4 theme-transition" />
-        </div>
-
-        <div className="relative h-[300px] md:h-[250px]">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={testimonials[current].id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.5 }}
-              className="absolute inset-0"
+      <div className="relative z-10">
+        <div className="min-h-[200px]">
+          {testimonials.map((testimonial, index) => (
+            <div
+              key={index}
+              className={cn(
+                "absolute left-0 top-0 w-full transition-opacity duration-500",
+                activeIndex === index ? "opacity-100" : "opacity-0 pointer-events-none",
+              )}
             >
-              <blockquote className="text-center">
-                <p className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 italic mb-8">
-                  "{testimonials[current].quote}"
-                </p>
-                <div className="flex flex-col items-center">
-                  <div className="w-16 h-16 rounded-full overflow-hidden mb-4 border-2 border-purple-100 dark:border-purple-800 theme-transition">
-                    <Image
-                      src={testimonials[current].avatar || "/placeholder.svg"}
-                      alt={testimonials[current].name}
-                      width={64}
-                      height={64}
-                      className="object-cover"
-                    />
-                  </div>
-                  <cite className="not-italic">
-                    <span className="block font-semibold text-gray-900 dark:text-white">
-                      {testimonials[current].name}
-                    </span>
-                    <span className="text-sm text-gray-500 dark:text-gray-400">{testimonials[current].role}</span>
-                  </cite>
+              <blockquote className="mb-6 text-lg italic text-gray-700 md:text-xl">"{testimonial.quote}"</blockquote>
+              <div className="flex items-center">
+                <div className="h-12 w-12 rounded-full bg-green-200" />
+                <div className="ml-4">
+                  <p className="font-semibold text-green-800">{testimonial.author}</p>
+                  <p className="text-sm text-gray-600">{testimonial.position}</p>
+                  <p className="text-sm font-medium text-green-600">{testimonial.team}</p>
                 </div>
-              </blockquote>
-            </motion.div>
-          </AnimatePresence>
+              </div>
+            </div>
+          ))}
         </div>
 
-        <div className="flex justify-center gap-2 mt-8">
-          <button
-            onClick={() => {
-              prev()
-              setAutoplay(false)
-            }}
-            className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors theme-transition"
+        <div className="mt-8 flex justify-center gap-4">
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={prevTestimonial}
+            className="h-8 w-8 rounded-full border-green-200 p-0"
             aria-label="Previous testimonial"
           >
-            <ChevronLeftIcon className="h-5 w-5 text-gray-700 dark:text-gray-300" />
-          </button>
+            <ChevronLeft className="h-4 w-4" />
+          </Button>
 
-          <div className="flex gap-2 items-center">
+          <div className="flex items-center gap-2">
             {testimonials.map((_, index) => (
               <button
                 key={index}
-                onClick={() => {
-                  setCurrent(index)
-                  setAutoplay(false)
-                }}
-                className={`w-2.5 h-2.5 rounded-full transition-colors theme-transition ${
-                  index === current
-                    ? "bg-purple-600 dark:bg-purple-500"
-                    : "bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500"
-                }`}
+                onClick={() => setActiveIndex(index)}
+                className={cn(
+                  "h-2 w-2 rounded-full transition-all",
+                  activeIndex === index ? "bg-green-600 w-4" : "bg-green-200",
+                )}
                 aria-label={`Go to testimonial ${index + 1}`}
               />
             ))}
           </div>
 
-          <button
-            onClick={() => {
-              next()
-              setAutoplay(false)
-            }}
-            className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors theme-transition"
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={nextTestimonial}
+            className="h-8 w-8 rounded-full border-green-200 p-0"
             aria-label="Next testimonial"
           >
-            <ChevronRightIcon className="h-5 w-5 text-gray-700 dark:text-gray-300" />
-          </button>
+            <ChevronRight className="h-4 w-4" />
+          </Button>
         </div>
       </div>
     </div>
