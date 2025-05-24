@@ -134,7 +134,6 @@ export default function AboutPage() {
             <AnimatedSection animation="slide-left" delay={200}>
               <div className="relative">
                 <div className="absolute -top-6 -left-6 w-24 h-24 bg-green-100 rounded-full opacity-70"></div>
-                <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-green-100 rounded-full opacity-70"></div>
                 <img
                   src="/mun.jpg"
                   alt="EcoNerds Mission"
@@ -154,7 +153,7 @@ export default function AboutPage() {
               Meet Our Team
             </h2>
           </AnimatedSection>
-          <div className="grid md:grid-cols-3 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-4 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
             <AnimatedSection animation="zoom-in" delay={0}>
               <TeamMember 
                 name="Ayim Zhubatkan" 
@@ -168,7 +167,7 @@ export default function AboutPage() {
                 name="Malika Shuinshalina" 
                 role="Co-organizer" 
                 image="/malika.jpg" 
-                bio="Business development professional focused on creating valuable industry connections." 
+                bio="Youth Economics Olympiad Finalist" 
               />
             </AnimatedSection>
             <AnimatedSection animation="zoom-in" delay={200}>
@@ -176,7 +175,15 @@ export default function AboutPage() {
                 name="Kerey Berdyshev" 
                 role="Co-organizer" 
                 image="https://media.licdn.com/dms/image/v2/D5603AQFBuGxajANzZw/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1723446562807?e=1753315200&v=beta&t=sv_aRfwB3KdhQ3S3wSwvhtBWmB-1Hecg7-bXZaQllBA" 
-                bio="" 
+                bio="Technical Director" 
+              />
+            </AnimatedSection>
+            <AnimatedSection animation="zoom-in" delay={300}>
+              <TeamMemberSpecial 
+                name="Ayanat Abitova" 
+                role="Co-organizer" 
+                image="/ayanat.jpg" 
+                bio="Creative Director" 
               />
             </AnimatedSection>
           </div>
