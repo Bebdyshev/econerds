@@ -28,18 +28,10 @@ export default function Home() {
                 Business case competition for students in grades 8-12 in Aktobe
               </p>
               <div className="flex flex-col sm:flex-row justify-center gap-4 mb-12">
-                <Button size="lg" className="bg-green-500 hover:bg-green-600 text-white" asChild>
+                <Button size="lg" className="bg-green-500 hover:bg-green-600 text-white text-xl py-8 px-12 rounded-xl shadow-lg transform transition-transform hover:scale-105" asChild>
                   <Link href="/register">
-                    Register Now <ArrowRightIcon className="ml-2 h-4 w-4" />
+                    Register Now <ArrowRightIcon className="ml-3 h-6 w-6" />
                   </Link>
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-green-500 text-green-600 hover:bg-green-50"
-                  asChild
-                >
-                  <Link href="/about">Learn More</Link>
                 </Button>
               </div>
               <div className="p-4 bg-white/80 backdrop-blur-sm rounded-xl shadow-lg inline-block">
