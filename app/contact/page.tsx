@@ -42,7 +42,6 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-medium text-gray-900 mb-1">Email</h3>
                     <p className="text-gray-700">econerdsclub@gmail.com</p>
-                    <p className="text-gray-700">support@econerds.kz</p>
                   </div>
                 </div>
                 <div className="flex items-start">
@@ -64,36 +63,9 @@ export default function ContactPage() {
                     <p className="text-gray-700">NIS Aktobe, Kazakhstan</p>
                   </div>
                 </div>
-                <div className="flex items-start">
-                  <div className="bg-green-100 p-3 rounded-full mr-4">
-                    <Clock className="h-6 w-6 text-green-600" />
-                  </div>
-                  <div>
-                    <h3 className="font-medium text-gray-900 mb-1">Office Hours</h3>
-                    <p className="text-gray-700">Monday - Friday: 8:00 AM - 6:00 PM</p>
-                    <p className="text-gray-700">Saturday - Sunday: Closed</p>
-                  </div>
-                </div>
+
               </div>
 
-              <div className="mt-12">
-                <h3 className="font-medium text-gray-900 mb-4">Follow Us</h3>
-                <div className="flex space-x-4">
-                  {["facebook", "twitter", "instagram", "linkedin"].map((social) => (
-                    <a
-                      key={social}
-                      href="#"
-                      className="bg-green-100 p-3 rounded-full text-green-600 hover:bg-green-200 transition-colors"
-                    >
-                      <img
-                        src={`/placeholder.svg?height=24&width=24&query=${social} icon`}
-                        alt={social}
-                        className="h-6 w-6"
-                      />
-                    </a>
-                  ))}
-                </div>
-              </div>
             </AnimatedSection>
 
           </div>
