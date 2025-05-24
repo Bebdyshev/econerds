@@ -67,7 +67,7 @@ export default function Home() {
             <AnimatedFeature
               icon={<CalendarIcon className="h-10 w-10 text-green-500" />}
               title="Date"
-              description="June 15-16, 2024"
+              description="June 5, 2024"
               delay={0}
             />
             <AnimatedFeature

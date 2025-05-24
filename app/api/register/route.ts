@@ -1,0 +1,80 @@
+import { NextResponse } from 'next/server';
+import { Pool } from 'pg';
+
+// Строка подключения к PostgreSQL
+const connectionString = 'postgresql://postgres:NnocFukMmeCWPfkcSLZyOdrECfuFEsHS@switchyard.proxy.rlwy.net:30402/railway';
+
+// Функция для создания таблицы
+async function createTableIfNotExists() {
+  const pool = new Pool({ connectionString });
+  try {
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS teams (
+        id SERIAL PRIMARY KEY,
+        team_name VARCHAR(255) NOT NULL,
+        institution VARCHAR(255) NOT NULL,
+        team_leader_name VARCHAR(255) NOT NULL,
+        team_leader_email VARCHAR(255) NOT NULL,
+        team_leader_phone VARCHAR(50) NOT NULL,
+        members JSONB NOT NULL,
+        motivation TEXT NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+    console.log('Database table checked/created successfully');
+    return true;
+  } catch (error) {
+    console.error('Error creating table:', error);
+    return false;
+  } finally {
+    await pool.end();
+  }
+}
+
+export async function POST(request: Request) {
+  try {
+    // Убедимся, что таблица существует перед обработкой запроса
+    const tableCreated = await createTableIfNotExists();
+    if (!tableCreated) {
+      return NextResponse.json(
+        { success: false, message: 'Database initialization failed' },
+        { status: 500 }
+      );
+    }
+
+    // Создаем новое подключение для операции
+    const pool = new Pool({ connectionString });
+
+    try {
+      // Получаем данные из запроса
+      const data = await request.json();
+      const { teamName, institution, teamLeaderName, teamLeaderEmail, teamLeaderPhone, members, motivation } = data;
+
+      // Сохраняем данные в базу
+      const result = await pool.query(
+        `INSERT INTO teams (
+          team_name, institution, team_leader_name, team_leader_email, team_leader_phone, members, motivation
+        ) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id`,
+        [teamName, institution, teamLeaderName, teamLeaderEmail, teamLeaderPhone, JSON.stringify(members), motivation]
+      );
+
+      // Возвращаем успешный ответ
+      return NextResponse.json({ 
+        success: true, 
+        message: 'Team registered successfully', 
+        teamId: result.rows[0].id 
+      });
+    } finally {
+      // Закрываем подключение в любом случае
+      await pool.end();
+    }
+  } catch (error) {
+    console.error('Error registering team:', error);
+    
+    // Возвращаем ошибку
+    return NextResponse.json(
+      { success: false, message: 'Failed to register team', error: error instanceof Error ? error.message : String(error) },
+      { status: 500 }
+    );
+  }
+} 

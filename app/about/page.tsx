@@ -1,3 +1,4 @@
+"use client"
 import { BookOpen, Users, Trophy, Lightbulb, Target, BarChart } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
@@ -5,6 +6,52 @@ import TeamMember from "@/components/team-member"
 import Timeline from "@/components/timeline"
 import AnimatedSection from "@/components/animated-section"
 import { ArrowLeftIcon } from "@radix-ui/react-icons"
+import { cn } from "@/lib/utils"
+import { useState } from "react"
+
+// Special component only for the second team member
+function TeamMemberSpecial({ name, role, image, bio }: { name: string; role: string; image: string; bio: string }) {
+  const [isHovered, setIsHovered] = useState(false)
+
+  return (
+    <div
+      className="group relative overflow-hidden rounded-xl shadow-md transition-all duration-300 hover:shadow-lg"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div className="aspect-square overflow-hidden">
+        <img
+          src={image || "/placeholder.svg?height=300&width=300&query=professional portrait"}
+          alt={name}
+          className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-110"
+        />
+      </div>
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+
+      <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+        <div
+          className={cn("transform transition-transform duration-300", isHovered ? "translate-y-0" : "translate-y-12")}
+        >
+          <h3 className="text-lg font-bold">{name}</h3>
+          <p className="text-sm text-green-300">{role}</p>
+          <p
+            className={cn(
+              "mt-2 text-sm opacity-0 transition-opacity duration-300",
+              isHovered ? "opacity-100" : "opacity-0",
+            )}
+          >
+            {bio}
+          </p>
+        </div>
+      </div>
+
+      <div className="absolute bottom-0 left-0 right-0 bg-white p-4 transform transition-transform duration-300 group-hover:translate-y-full">
+        <h3 className="text-lg font-bold text-gray-900">{name}</h3>
+        <p className="text-sm text-green-600">{role}</p>
+      </div>
+    </div>
+  )
+}
 
 export default function AboutPage() {
   return (
@@ -99,18 +146,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* History Timeline */}
-      <section className="py-16 bg-green-50">
-        <div className="container mx-auto px-4">
-          <AnimatedSection animation="fade-up">
-            <h2 className="text-3xl font-bold text-center mb-12 bg-gradient-to-r from-green-500 to-emerald-600 bg-clip-text text-transparent">
-              Our Journey
-            </h2>
-          </AnimatedSection>
-          <Timeline />
-        </div>
-      </section>
-
       {/* Team Section */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
@@ -119,37 +154,23 @@ export default function AboutPage() {
               Meet Our Team
             </h2>
           </AnimatedSection>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              {
-                name: "Aisha Nurmagambetova",
-                role: "Founder & Director",
-                image: "/placeholder.svg?height=300&width=300&query=professional portrait",
-                bio: "Economics Professor with 15+ years of experience in financial analysis and economic policy.",
-              },
-              {
-                name: "Daulet Akhmetov",
-                role: "Program Coordinator",
-                image: "/placeholder.svg?height=300&width=300&query=professional portrait",
-                bio: "Former economic advisor with expertise in case development and competition management.",
-              },
-              {
-                name: "Madina Serikov",
-                role: "Partnerships Lead",
-                image: "/placeholder.svg?height=300&width=300&query=professional portrait",
-                bio: "Business development professional focused on creating valuable industry connections.",
-              },
-              {
-                name: "Arman Tulegenov",
-                role: "Marketing Director",
-                image: "/placeholder.svg?height=300&width=300&query=professional portrait",
-                bio: "Digital marketing specialist with a background in event promotion and branding.",
-              },
-            ].map((member, i) => (
-              <AnimatedSection key={i} animation="zoom-in" delay={i * 100}>
-                <TeamMember name={member.name} role={member.role} image={member.image} bio={member.bio} />
-              </AnimatedSection>
-            ))}
+          <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-2xl mx-auto">
+            <AnimatedSection animation="zoom-in" delay={0}>
+              <TeamMember 
+                name="Ayim Zhubatkan" 
+                role="Founder, co-organizer" 
+                image="/ayim.jpg" 
+                bio="Upcoming EFI 2025 participant" 
+              />
+            </AnimatedSection>
+            <AnimatedSection animation="zoom-in" delay={100}>
+              <TeamMemberSpecial 
+                name="Malika Shuinshalina" 
+                role="Co-organizer" 
+                image="/malika.jpg" 
+                bio="Business development professional focused on creating valuable industry connections." 
+              />
+            </AnimatedSection>
           </div>
         </div>
       </section>

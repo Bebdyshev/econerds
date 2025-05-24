@@ -51,8 +51,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-medium text-gray-900 mb-1">Phone</h3>
-                    <p className="text-gray-700">+7 (777) 123-4567</p>
-                    <p className="text-gray-700">+7 (777) 765-4321</p>
+                    <p className="text-gray-700">+7 (705) 554 2611</p>
                   </div>
                 </div>
                 <div className="flex items-start">
@@ -61,7 +60,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-medium text-gray-900 mb-1">Address</h3>
-                    <p className="text-gray-700">Aktobe Business Center</p>
+                    <p className="text-gray-700">Ниша нашего</p>
                     <p className="text-gray-700">Abulkhair Khan Avenue, Aktobe, Kazakhstan</p>
                   </div>
                 </div>
@@ -71,7 +70,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-medium text-gray-900 mb-1">Office Hours</h3>
-                    <p className="text-gray-700">Monday - Friday: 9:00 AM - 6:00 PM</p>
+                    <p className="text-gray-700">Monday - Friday: 8:00 AM - 6:00 PM</p>
                     <p className="text-gray-700">Saturday - Sunday: Closed</p>
                   </div>
                 </div>
