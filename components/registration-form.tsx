@@ -90,7 +90,7 @@ export default function RegistrationForm() {
         </div>
         <h3 className="text-2xl font-bold text-gray-800 mb-4">Registration Successful!</h3>
         <p className="text-gray-700 mb-6">
-          Thank you for registering for the EcoNerds Case Competition. We have sent a confirmation email to{" "}
+          Thank you for registering for the ecoNerds Case Competition. We have sent a confirmation email to{" "}
           {formState.teamLeaderEmail} with further details.
         </p>
         <Button className="bg-green-500 hover:bg-green-600 text-white" asChild>

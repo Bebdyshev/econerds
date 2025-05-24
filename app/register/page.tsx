@@ -25,7 +25,7 @@ export default function RegisterPage() {
           <AnimatedSection animation="fade-up">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">Register Your Team</h1>
             <p className="text-xl max-w-3xl">
-              Complete the registration form below to secure your team's spot in the EcoNerds Case Competition.
+              Complete the registration form below to secure your team's spot in the ecoNerds Case Competition.
             </p>
           </AnimatedSection>
         </div>

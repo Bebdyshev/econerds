@@ -21,7 +21,7 @@ export default function ContactPage() {
           </div>
           <AnimatedSection animation="fade-up">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">Contact Us</h1>
-            <p className="text-xl max-w-3xl">Have questions about the EcoNerds Case Competition? We're here to help!</p>
+            <p className="text-xl max-w-3xl">Have questions about the ecoNerds Case Competition? We're here to help!</p>
           </AnimatedSection>
         </div>
       </section>
@@ -41,7 +41,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-medium text-gray-900 mb-1">Email</h3>
-                    <p className="text-gray-700">info@econerds.kz</p>
+                    <p className="text-gray-700">econerdsclub@gmail.com</p>
                     <p className="text-gray-700">support@econerds.kz</p>
                   </div>
                 </div>

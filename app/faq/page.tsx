@@ -11,9 +11,9 @@ export default function FAQPage() {
       category: "General Information",
       questions: [
         {
-          question: "What is the EcoNerds Case Competition?",
+          question: "What is the ecoNerds Case Competition?",
           answer:
-            "The EcoNerds Case Competition is a premier business case analysis event for students in grades 8-12 in Aktobe, Kazakhstan. Teams analyze real-world business cases, develop solutions, and present their findings to a panel of industry experts.",
+            "The ecoNerds Case Competition is a premier business case analysis event for students in grades 8-12 in Aktobe, Kazakhstan. Teams analyze real-world business cases, develop solutions, and present their findings to a panel of industry experts.",
         },
         {
           question: "When and where will the competition take place?",
@@ -51,7 +51,7 @@ export default function FAQPage() {
         {
           question: "Is there a registration fee?",
           answer:
-            "No, participation in the EcoNerds Case Competition is completely free. However, registration is mandatory and spots are limited, so we recommend registering early to secure your team's place.",
+            "No, participation in the ecoNerds Case Competition is completely free. However, registration is mandatory and spots are limited, so we recommend registering early to secure your team's place.",
         },
         {
           question: "What is the registration deadline?",
@@ -131,7 +131,7 @@ export default function FAQPage() {
           </div>
           <AnimatedSection animation="fade-up">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">Frequently Asked Questions</h1>
-            <p className="text-xl max-w-3xl">Find answers to common questions about the EcoNerds Case Competition.</p>
+            <p className="text-xl max-w-3xl">Find answers to common questions about the ecoNerds Case Competition.</p>
           </AnimatedSection>
         </div>
       </section>

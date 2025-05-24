@@ -53,7 +53,7 @@ export default function Footer() {
             <ul className="space-y-3">
               <li className="flex items-start">
                 <EnvelopeClosedIcon className="h-5 w-5 text-green-400 mr-2 mt-0.5" />
-                <span className="text-gray-400">info@econerds.kz</span>
+                <span className="text-gray-400">econerdsclub@gmail.com</span>
               </li>
               <li className="flex items-start">
                 <Phone className="h-5 w-5 text-green-400 mr-2 mt-0.5" />

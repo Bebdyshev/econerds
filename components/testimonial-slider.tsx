@@ -8,7 +8,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons"
 const testimonials = [
   {
     quote:
-      "Participating in the EcoNerds Case Competition was a transformative experience. The real-world cases challenged our economic thinking and helped us develop practical skills that we couldn't learn in a classroom.",
+      "Participating in the ecoNerds Case Competition was a transformative experience. The real-world cases challenged our economic thinking and helped us develop practical skills that we couldn't learn in a classroom.",
     author: "Aizhan Nurpeisova",
     position: "Economics Student, Nazarbayev University",
     image: "/placeholder.svg?height=100&width=100&query=student portrait",

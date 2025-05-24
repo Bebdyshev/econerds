@@ -22,7 +22,7 @@ export default function Home() {
           <div className="max-w-4xl mx-auto text-center">
             <div className="animate-fade-in-up">
               <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-green-500 to-emerald-600 bg-clip-text text-transparent">
-                EcoNerds Case Competition
+                ecoNerds Case Competition
               </h1>
               <p className="text-xl md:text-2xl text-gray-700 mb-8">
                 Business case competition for students in grades 8-12 in Aktobe
@@ -96,7 +96,7 @@ export default function Home() {
                 <div>
                   <h3 className="text-2xl font-bold text-gray-800 mb-4">About the Competition</h3>
                   <p className="text-gray-700 mb-4">
-                    EcoNerds Case Competition brings together bright students from grades 8-12 to tackle business challenges
+                    ecoNerds Case Competition brings together bright students from grades 8-12 to tackle business challenges
                     with innovative, sustainable solutions.
                   </p>
                   <p className="text-gray-700 mb-4">
@@ -115,14 +115,14 @@ export default function Home() {
                   </ul>
                   <div className="mt-6">
                     <Button className="bg-green-500 hover:bg-green-600 text-white" asChild>
-                      <Link href="/about">Read More About EcoNerds</Link>
+                      <Link href="/about">Read More About ecoNerds</Link>
                     </Button>
                   </div>
                 </div>
                 <div className="relative h-64 md:h-80 overflow-hidden rounded-xl shadow-lg">
                   <img
                     src="/mun.jpg"
-                    alt="EcoNerds Case Competition"
+                    alt="ecoNerds Case Competition"
                     className="object-cover w-full h-full"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
@@ -189,7 +189,7 @@ export default function Home() {
           <AnimatedSection animation="fade-up">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Showcase Your Economic Expertise?</h2>
             <p className="text-xl mb-8 max-w-2xl mx-auto">
-              Join the EcoNerds Case Competition and put your skills to the test. Registration closes on May 31, 2024.
+              Join the ecoNerds Case Competition and put your skills to the test. Registration closes on May 31, 2024.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Button size="lg" className="bg-white text-green-600 hover:bg-gray-100" asChild>

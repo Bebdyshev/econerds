@@ -10,13 +10,13 @@ export default function Timeline() {
       year: "2018",
       title: "The Beginning",
       description:
-        "EcoNerds was founded by a group of economics professors who wanted to bridge the gap between academic theory and practical application.",
+        "ecoNerds was founded by a group of economics professors who wanted to bridge the gap between academic theory and practical application.",
     },
     {
       year: "2019",
       title: "First Competition",
       description:
-        "The inaugural EcoNerds Case Competition was held in Almaty with 12 teams from 5 universities participating.",
+        "The inaugural ecoNerds Case Competition was held in Almaty with 12 teams from 5 universities participating.",
     },
     {
       year: "2020",

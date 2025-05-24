@@ -68,7 +68,7 @@ export default function AboutPage() {
             </Button>
           </div>
           <AnimatedSection animation="fade-up">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">About EcoNerds</h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">About ecoNerds</h1>
             <p className="text-xl max-w-3xl">
               Learn more about our mission, history, and the impact we're making in economic education and innovation.
             </p>
@@ -85,7 +85,7 @@ export default function AboutPage() {
                 Our Mission
               </h2>
               <p className="text-gray-700 mb-4">
-                EcoNerds was founded with a clear mission: to bridge the gap between academic economic theory and
+                ecoNerds was founded with a clear mission: to bridge the gap between academic economic theory and
                 real-world application. We believe that the economists of tomorrow need practical experience today.
               </p>
               <p className="text-gray-700 mb-4">
@@ -227,7 +227,7 @@ export default function AboutPage() {
         <div className="container mx-auto px-4 text-center">
           <AnimatedSection animation="fade-up">
             <h2 className="text-3xl font-bold mb-6 bg-gradient-to-r from-green-500 to-emerald-600 bg-clip-text text-transparent">
-              Join the EcoNerds Community
+              Join the ecoNerds Community
             </h2>
             <p className="text-gray-700 mb-8 max-w-2xl mx-auto">
               Whether you're a student looking to participate, a professional wanting to mentor, or an organization
