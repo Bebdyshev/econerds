@@ -43,7 +43,7 @@ export default function Home() {
                 </Button>
               </div>
               <div className="p-4 bg-white/80 backdrop-blur-sm rounded-xl shadow-lg inline-block">
-                <CountdownTimer targetDate="2025-06-06T08:00:00" />
+                <CountdownTimer targetDate="2025-05-27T08:00:00" />
               </div>
             </div>
           </div>
