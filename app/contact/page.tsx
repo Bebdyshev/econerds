@@ -96,34 +96,7 @@ export default function ContactPage() {
               </div>
             </AnimatedSection>
 
-            <AnimatedSection animation="slide-left" delay={200}>
-              <h2 className="text-3xl font-bold mb-8 bg-gradient-to-r from-green-500 to-emerald-600 bg-clip-text text-transparent">
-                Send Us a Message
-              </h2>
-              <ContactForm />
-            </AnimatedSection>
           </div>
-        </div>
-      </section>
-
-      {/* Map Section */}
-      <section className="py-16 bg-green-50">
-        <div className="container mx-auto px-4">
-          <AnimatedSection animation="fade-up">
-            <h2 className="text-3xl font-bold text-center mb-12 bg-gradient-to-r from-green-500 to-emerald-600 bg-clip-text text-transparent">
-              Find Us
-            </h2>
-            <div className="bg-white rounded-xl shadow-lg overflow-hidden h-96">
-              <img
-                src="/placeholder.svg?height=600&width=1200&query=map of Aktobe Kazakhstan"
-                alt="Map location"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="mt-8 text-center">
-              <Button className="bg-green-500 hover:bg-green-600 text-white">Get Directions</Button>
-            </div>
-          </AnimatedSection>
         </div>
       </section>
 

@@ -25,7 +25,7 @@ export default function Home() {
                 EcoNerds Case Competition
               </h1>
               <p className="text-xl md:text-2xl text-gray-700 mb-8">
-                Solve real-world economic challenges and showcase your innovative solutions
+                Business case competition for students in grades 8-12 in Aktobe
               </p>
               <div className="flex flex-col sm:flex-row justify-center gap-4 mb-12">
                 <Button size="lg" className="bg-green-500 hover:bg-green-600 text-white" asChild>
@@ -43,7 +43,7 @@ export default function Home() {
                 </Button>
               </div>
               <div className="p-4 bg-white/80 backdrop-blur-sm rounded-xl shadow-lg inline-block">
-                <CountdownTimer targetDate="2025-05-27T08:00:00" />
+                <CountdownTimer targetDate="2025-06-05T08:00:00" />
               </div>
             </div>
           </div>
@@ -67,7 +67,7 @@ export default function Home() {
             <AnimatedFeature
               icon={<CalendarIcon className="h-10 w-10 text-green-500" />}
               title="Date"
-              description="June 5, 2024"
+              description="June 5, 2025"
               delay={0}
             />
             <AnimatedFeature
@@ -85,7 +85,7 @@ export default function Home() {
             <AnimatedFeature
               icon={<Users className="h-10 w-10 text-green-500" />}
               title="Participants"
-              description="Teams of 3-4 students"
+              description="Students in grades 8-12"
               delay={3}
             />
           </div>
@@ -96,7 +96,7 @@ export default function Home() {
                 <div>
                   <h3 className="text-2xl font-bold text-gray-800 mb-4">About the Competition</h3>
                   <p className="text-gray-700 mb-4">
-                    EcoNerds Case Competition brings together the brightest minds to tackle pressing economic challenges
+                    EcoNerds Case Competition brings together bright students from grades 8-12 to tackle business challenges
                     with innovative, sustainable solutions.
                   </p>
                   <p className="text-gray-700 mb-4">
@@ -121,13 +121,12 @@ export default function Home() {
                 </div>
                 <div className="relative h-64 md:h-80 overflow-hidden rounded-xl shadow-lg">
                   <img
-                    src="https://agcdn-1d97e.kxcdn.com/wp-content/uploads/2018/02/alphagamma-best-case-competitions-to-apply-for-in-2018-entrepreneurship-youth-opportunities-business.jpg"
+                    src="/mun.jpg"
                     alt="EcoNerds Case Competition"
                     className="object-cover w-full h-full"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
                     <div className="p-4 text-white">
-                      <p className="font-medium">Prize pool: $5,000</p>
                     </div>
                   </div>
                 </div>

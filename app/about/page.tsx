@@ -136,7 +136,7 @@ export default function AboutPage() {
                 <div className="absolute -top-6 -left-6 w-24 h-24 bg-green-100 rounded-full opacity-70"></div>
                 <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-green-100 rounded-full opacity-70"></div>
                 <img
-                  src="/placeholder.svg?height=400&width=600&query=economics students"
+                  src="/mun.jpg"
                   alt="EcoNerds Mission"
                   className="rounded-xl shadow-lg relative z-10"
                 />
@@ -154,7 +154,7 @@ export default function AboutPage() {
               Meet Our Team
             </h2>
           </AnimatedSection>
-          <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-2xl mx-auto">
+          <div className="grid md:grid-cols-3 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
             <AnimatedSection animation="zoom-in" delay={0}>
               <TeamMember 
                 name="Ayim Zhubatkan" 
@@ -169,6 +169,14 @@ export default function AboutPage() {
                 role="Co-organizer" 
                 image="/malika.jpg" 
                 bio="Business development professional focused on creating valuable industry connections." 
+              />
+            </AnimatedSection>
+            <AnimatedSection animation="zoom-in" delay={200}>
+              <TeamMemberSpecial 
+                name="Kerey Berdyshev" 
+                role="Co-organizer" 
+                image="https://media.licdn.com/dms/image/v2/D5603AQFBuGxajANzZw/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1723446562807?e=1753315200&v=beta&t=sv_aRfwB3KdhQ3S3wSwvhtBWmB-1Hecg7-bXZaQllBA" 
+                bio="" 
               />
             </AnimatedSection>
           </div>

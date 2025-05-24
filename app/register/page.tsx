@@ -64,9 +64,9 @@ export default function RegisterPage() {
                     <ul className="space-y-3">
                       {[
                         "Teams must consist of 3-4 members",
-                        "All team members must be currently enrolled students",
-                        "At least one team member should have a background in economics or finance",
-                        "Teams can represent universities, colleges, or form independently",
+                        "All team members must be students in grades 8-12",
+                        "Teams can represent schools or form independently",
+                        "No prior business experience required - just enthusiasm and creativity",
                         "Registration deadline: May 31, 2024",
                       ].map((item, i) => (
                         <li key={i} className="flex items-start">

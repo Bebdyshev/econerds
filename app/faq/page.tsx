@@ -13,17 +13,30 @@ export default function FAQPage() {
         {
           question: "What is the EcoNerds Case Competition?",
           answer:
-            "The EcoNerds Case Competition is a premier economic case analysis event for university students in Kazakhstan. Teams analyze real-world economic cases, develop solutions, and present their findings to a panel of industry experts.",
+            "The EcoNerds Case Competition is a premier business case analysis event for students in grades 8-12 in Aktobe, Kazakhstan. Teams analyze real-world business cases, develop solutions, and present their findings to a panel of industry experts.",
         },
         {
           question: "When and where will the competition take place?",
-          answer:
-            "The competition will take place on June 15-16, 2024, at the Aktobe Business Center, located on Abulkhair Khan Avenue in Aktobe, Kazakhstan.",
+          answer: (
+            <>
+              The competition will take place on June 5, 2025, at the NIS Aktobe, located on Abulkhair Khan Avenue in Aktobe, Kazakhstan.
+              See the location on 2GIS:{" "}
+              <a
+                href="https://2gis.kz/aktobe/firm/70000001031854810?m=57.133988%2C50.276259%2F16.45"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-green-600 underline"
+              >
+                NIS Aktobe on 2GIS
+              </a>
+              .
+            </>
+          ),
         },
         {
           question: "Who can participate in the competition?",
           answer:
-            "The competition is open to undergraduate and graduate students from all universities in Kazakhstan. Teams should consist of 3-4 members, and at least one team member should have a background in economics or finance.",
+            "The competition is open to students in grades 8-12 from all schools in Aktobe. Teams should consist of 3-4 members. No prior business experience is required - we welcome all enthusiastic students who want to develop their business analysis and presentation skills.",
         },
       ],
     },
@@ -33,7 +46,7 @@ export default function FAQPage() {
         {
           question: "How do I register my team?",
           answer:
-            "Teams can register through our website by completing the registration form. You'll need to provide information about your team members, university affiliation, and a brief statement about why you want to participate.",
+            "Teams can register through our website by completing the registration form. You'll need to provide information about your team members, school affiliation, and a brief statement about why you want to participate.",
         },
         {
           question: "Is there a registration fee?",
@@ -41,13 +54,8 @@ export default function FAQPage() {
             "No, participation in the EcoNerds Case Competition is completely free. However, registration is mandatory and spots are limited, so we recommend registering early to secure your team's place.",
         },
         {
-          question: "Can international students participate?",
-          answer:
-            "Yes, international students studying at Kazakhstani universities are welcome to participate. We also accept a limited number of international teams from neighboring countries.",
-        },
-        {
           question: "What is the registration deadline?",
-          answer: "The registration deadline is May 31, 2024. Late registrations will not be accepted.",
+          answer: "The registration deadline is May 31, 2025. Late registrations will not be accepted.",
         },
       ],
     },
@@ -72,18 +80,13 @@ export default function FAQPage() {
         {
           question: "How long should our presentation be?",
           answer:
-            "Each team will have 15 minutes to present their solution, followed by a 10-minute Q&A session with the judges.",
+            "Each team will have 10 minutes to present their solution, followed by a 5-minute Q&A session with the judges.",
         },
       ],
     },
     {
-      category: "Logistics & Accommodation",
+      category: "Logistics",
       questions: [
-        {
-          question: "Will accommodation be provided for participants from other cities?",
-          answer:
-            "We have partnered with local hotels to provide discounted rates for participants traveling from other cities. Details will be shared with registered teams closer to the event date.",
-        },
         {
           question: "Will meals be provided during the competition?",
           answer:
@@ -97,13 +100,8 @@ export default function FAQPage() {
       ],
     },
     {
-      category: "Prizes & Recognition",
+      category: "Recognition",
       questions: [
-        {
-          question: "What prizes will be awarded?",
-          answer:
-            "The first-place team will receive $2,500, the second-place team will receive $1,500, and the third-place team will receive $1,000. All winning teams will also receive internship opportunities with our sponsor companies.",
-        },
         {
           question: "Will all participants receive certificates?",
           answer:
@@ -134,24 +132,6 @@ export default function FAQPage() {
           <AnimatedSection animation="fade-up">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">Frequently Asked Questions</h1>
             <p className="text-xl max-w-3xl">Find answers to common questions about the EcoNerds Case Competition.</p>
-          </AnimatedSection>
-        </div>
-      </section>
-
-      {/* Search Section */}
-      <section className="py-12 bg-white">
-        <div className="container mx-auto px-4">
-          <AnimatedSection animation="fade-up">
-            <div className="max-w-2xl mx-auto">
-              <div className="relative">
-                <MagnifyingGlassIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-                <Input
-                  type="text"
-                  placeholder="Search for questions..."
-                  className="pl-10 border-green-200 focus:border-green-500 focus:ring-green-500"
-                />
-              </div>
-            </div>
           </AnimatedSection>
         </div>
       </section>
