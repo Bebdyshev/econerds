@@ -96,7 +96,7 @@ export async function PUT(
            members = $6, 
            motivation = $7
        WHERE id = $8
-       RETURNING id, team_name, updated_at`,
+       RETURNING id, team_name, created_at`,
       [
         team_name,
         institution,
@@ -116,8 +116,15 @@ export async function PUT(
     });
   } catch (error) {
     console.error('Error updating team:', error);
+    
+    // Return a more detailed error response
     return NextResponse.json(
-      { success: false, message: 'Failed to update team', error: error instanceof Error ? error.message : String(error) },
+      { 
+        success: false, 
+        message: 'Failed to update team', 
+        error: error instanceof Error ? error.message : String(error),
+        details: error instanceof Error ? error.stack : undefined
+      },
       { status: 500 }
     );
   } finally {
@@ -161,7 +168,12 @@ export async function DELETE(
   } catch (error) {
     console.error('Error deleting team:', error);
     return NextResponse.json(
-      { success: false, message: 'Failed to delete team', error: error instanceof Error ? error.message : String(error) },
+      { 
+        success: false, 
+        message: 'Failed to delete team', 
+        error: error instanceof Error ? error.message : String(error),
+        details: error instanceof Error ? error.stack : undefined
+      },
       { status: 500 }
     );
   } finally {
