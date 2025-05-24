@@ -60,8 +60,8 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-medium text-gray-900 mb-1">Address</h3>
-                    <p className="text-gray-700">Ниша нашего</p>
-                    <p className="text-gray-700">Abulkhair Khan Avenue, Aktobe, Kazakhstan</p>
+                    <p className="text-gray-700">мкр-н Батыс 2 26Б</p>
+                    <p className="text-gray-700">NIS Aktobe, Kazakhstan</p>
                   </div>
                 </div>
                 <div className="flex items-start">

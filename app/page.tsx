@@ -73,7 +73,7 @@ export default function Home() {
             <AnimatedFeature
               icon={<MapPin className="h-10 w-10 text-green-500" />}
               title="Location"
-              description="Aktobe Business Center, Abulkhair Khan Avenue, Aktobe"
+              description="мкр-н Батыс 2 26Б, NIS Aktobe"
               delay={1}
             />
             <AnimatedFeature
@@ -138,7 +138,7 @@ export default function Home() {
       </section>
 
       {/* Prizes Section */}
-      <section className="py-20 bg-green-50">
+      {/* <section className="py-20 bg-green-50">
         <div className="container mx-auto px-4">
           <AnimatedSection animation="fade-up">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 relative">
@@ -182,7 +182,7 @@ export default function Home() {
             </Button>
           </AnimatedSection>
         </div>
-      </section>
+      </section> */}
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-green-500 to-emerald-600 text-white">

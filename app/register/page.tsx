@@ -31,15 +31,6 @@ export default function RegisterPage() {
         </div>
       </section>
 
-      {/* Registration Steps */}
-      <section className="py-12 bg-white">
-        <div className="container mx-auto px-4">
-          <AnimatedSection animation="fade-up">
-            <RegistrationSteps />
-          </AnimatedSection>
-        </div>
-      </section>
-
       {/* Registration Form */}
       <section className="py-12 bg-green-50">
         <div className="container mx-auto px-4">
@@ -125,6 +116,15 @@ export default function RegisterPage() {
               </div>
             </AnimatedSection>
           </div>
+        </div>
+      </section>
+
+            {/* Registration Steps */}
+            <section className="py-12 bg-white">
+        <div className="container mx-auto px-4">
+          <AnimatedSection animation="fade-up">
+            <RegistrationSteps />
+          </AnimatedSection>
         </div>
       </section>
     </main>
