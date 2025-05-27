@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { CheckCircle, PlusCircle, XCircle } from "lucide-react"
 import Link from "next/link"
 
@@ -19,15 +20,27 @@ export default function RegistrationForm() {
     teamLeaderPhone: "",
     members: [""],
     motivation: "",
+    city: "",
   })
 
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [error, setError] = useState("")
 
+  const kazakhstanCities = [
+    "Almaty", "Astana", "Shymkent", "Aktobe", "Karaganda", "Taraz", 
+    "Oskemen", "Pavlodar", "Atyrau", "Semey", "Kyzylorda", "Kostanay", 
+    "Aktau", "Oral", "Petropavl", "Turkistan", "Kokshetau", "Temirtau", 
+    "Taldykorgan", "Ekibastuz"
+  ];
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormState((prev) => ({ ...prev, [name]: value }))
+  }
+
+  const handleCityChange = (value: string) => {
+    setFormState((prev) => ({ ...prev, city: value }))
   }
 
   const handleMemberChange = (index: number, value: string) => {
@@ -132,6 +145,22 @@ export default function RegistrationForm() {
               required
               className="border-gray-300 focus:border-green-500 focus:ring-green-500"
             />
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="city">City *</Label>
+            <Select name="city" value={formState.city} onValueChange={handleCityChange} required>
+              <SelectTrigger className="border-gray-300 focus:border-green-500 focus:ring-green-500">
+                <SelectValue placeholder="Select a city" />
+              </SelectTrigger>
+              <SelectContent>
+                {kazakhstanCities.map((city) => (
+                  <SelectItem key={city} value={city}>
+                    {city}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
         </div>
 

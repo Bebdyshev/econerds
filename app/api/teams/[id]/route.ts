@@ -15,7 +15,7 @@ export async function GET(
   try {
     const result = await pool.query(
       `SELECT id, team_name, institution, team_leader_name, team_leader_email, 
-              team_leader_phone, members, motivation, created_at 
+              team_leader_phone, members, motivation, city, created_at 
        FROM teams 
        WHERE id = $1`,
       [teamId]
@@ -61,7 +61,8 @@ export async function PUT(
       team_leader_email,
       team_leader_phone,
       members,
-      motivation
+      motivation,
+      city
     } = data;
 
     // Проверяем обязательные поля
@@ -94,9 +95,10 @@ export async function PUT(
            team_leader_email = $4, 
            team_leader_phone = $5, 
            members = $6, 
-           motivation = $7
-       WHERE id = $8
-       RETURNING id, team_name, created_at`,
+           motivation = $7,
+           city = $8 
+       WHERE id = $9
+       RETURNING id, team_name, city, created_at`,
       [
         team_name,
         institution,
@@ -105,6 +107,7 @@ export async function PUT(
         team_leader_phone || null,
         JSON.stringify(members),
         motivation || null,
+        city || null,
         teamId
       ]
     );
@@ -112,7 +115,7 @@ export async function PUT(
     return NextResponse.json({ 
       success: true, 
       message: 'Team updated successfully',
-      team: { id: teamId, team_name }
+      team: { id: teamId, team_name, city: result.rows[0].city }
     });
   } catch (error) {
     console.error('Error updating team:', error);

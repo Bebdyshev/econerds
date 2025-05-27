@@ -8,6 +8,7 @@ const connectionString = 'postgresql://postgres:NnocFukMmeCWPfkcSLZyOdrECfuFEsHS
 async function createTableIfNotExists() {
   const pool = new Pool({ connectionString });
   try {
+    // First, ensure the table exists with the basic schema
     await pool.query(`
       CREATE TABLE IF NOT EXISTS teams (
         id SERIAL PRIMARY KEY,
@@ -21,7 +22,25 @@ async function createTableIfNotExists() {
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       )
     `);
-    console.log('Database table checked/created successfully');
+    console.log('Database table structure initially checked/created.');
+
+    // Check if the 'city' column exists
+    const checkColumnQuery = `
+      SELECT column_name 
+      FROM information_schema.columns 
+      WHERE table_name='teams' AND column_name='city';
+    `;
+    const { rows } = await pool.query(checkColumnQuery);
+
+    if (rows.length === 0) {
+      // If the column doesn't exist, add it
+      await pool.query('ALTER TABLE teams ADD COLUMN city VARCHAR(255)');
+      console.log('Column "city" added to "teams" table.');
+    } else {
+      console.log('Column "city" already exists in "teams" table.');
+    }
+    
+    console.log('Database table schema verified/updated successfully');
     return true;
   } catch (error) {
     console.error('Error creating table:', error);
@@ -48,14 +67,14 @@ export async function POST(request: Request) {
     try {
       // Получаем данные из запроса
       const data = await request.json();
-      const { teamName, institution, teamLeaderName, teamLeaderEmail, teamLeaderPhone, members, motivation } = data;
+      const { teamName, institution, teamLeaderName, teamLeaderEmail, teamLeaderPhone, members, motivation, city } = data;
 
       // Сохраняем данные в базу
       const result = await pool.query(
         `INSERT INTO teams (
-          team_name, institution, team_leader_name, team_leader_email, team_leader_phone, members, motivation
-        ) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id`,
-        [teamName, institution, teamLeaderName, teamLeaderEmail, teamLeaderPhone, JSON.stringify(members), motivation]
+          team_name, institution, team_leader_name, team_leader_email, team_leader_phone, members, motivation, city
+        ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING id`,
+        [teamName, institution, teamLeaderName, teamLeaderEmail, teamLeaderPhone, JSON.stringify(members), motivation, city]
       );
 
       // Возвращаем успешный ответ
