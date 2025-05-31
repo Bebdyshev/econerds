@@ -25,13 +25,15 @@ export default function RegisterPage() {
           <AnimatedSection animation="fade-up">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">Register Your Team</h1>
             <p className="text-xl max-w-3xl">
-              Complete the registration form below to secure your team's spot in the ecoNerds Case Competition.
+              {/* Complete the registration form below to secure your team's spot in the ecoNerds Case Competition. */}
+              Registration is currently closed. Please check back later or contact us for more information.
             </p>
           </AnimatedSection>
         </div>
       </section>
 
       {/* Registration Form */}
+      {/*
       <section className="py-12 bg-green-50">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
@@ -46,6 +48,7 @@ export default function RegisterPage() {
           </div>
         </div>
       </section>
+      */}
 
       {/* Registration Info */}
       <section className="py-12 bg-white">

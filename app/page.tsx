@@ -27,13 +27,13 @@ export default function Home() {
               <p className="text-xl md:text-2xl text-gray-700 mb-8">
                 Business case competition for students in grades 8-12 in Aktobe
               </p>
-              <div className="flex flex-col sm:flex-row justify-center gap-4 mb-12">
+              {/* <div className="flex flex-col sm:flex-row justify-center gap-4 mb-12">
                 <Button size="lg" className="bg-green-500 hover:bg-green-600 text-white text-xl py-8 px-12 rounded-xl shadow-lg transform transition-transform hover:scale-105" asChild>
                   <Link href="/register">
                     Register Now <ArrowRightIcon className="ml-3 h-6 w-6" />
                   </Link>
                 </Button>
-              </div>
+              </div> */}
               <div className="p-4 bg-white/80 backdrop-blur-sm rounded-xl shadow-lg inline-block">
                 <CountdownTimer targetDate="2025-06-05T08:00:00" />
               </div>
@@ -183,10 +183,15 @@ export default function Home() {
             <p className="text-xl mb-8 max-w-2xl mx-auto">
               Join the ecoNerds Case Competition and put your skills to the test. Registration closes on May 31, 2024.
             </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
+            {/* <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Button size="lg" className="bg-white text-green-600 hover:bg-gray-100" asChild>
                 <Link href="/register">Register Your Team</Link>
               </Button>
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-green-600" asChild>
+                <Link href="/contact">Contact Us</Link>
+              </Button>
+            </div> */}
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-green-600" asChild>
                 <Link href="/contact">Contact Us</Link>
               </Button>

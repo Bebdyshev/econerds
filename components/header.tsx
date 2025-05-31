@@ -69,9 +69,6 @@ export default function Header() {
                 {item.name}
               </Link>
             ))}
-            <Button className="bg-green-500 hover:bg-green-600 text-white" asChild>
-              <Link href="/register">Register Now</Link>
-            </Button>
           </nav>
 
           {/* Mobile Menu Button */}
